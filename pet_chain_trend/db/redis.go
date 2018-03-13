@@ -1,8 +1,10 @@
 package db
 
 import (
+	"fmt"
 	"time"
 
+	"github.com/dlintw/goconf"
 	"github.com/garyburd/redigo/redis"
 )
 
@@ -26,6 +28,7 @@ func newPool(server, password string) *redis.Pool {
 				return nil, err
 			}
 			if redisPassword != "" {
+				fmt.Println(redisPassword)
 				if _, err = c.Do("AUTH", password); err != nil {
 					c.Close()
 					return nil, err
@@ -43,12 +46,12 @@ func newPool(server, password string) *redis.Pool {
 	}
 }
 
-func InitRedisPool() {
-	redisServer = "127.0.0.1:6379"
-	redisPassword = ""
-	maxIdle = 10
-	maxActive = 100
-	idleTimeout = 10
+func InitRedisPool(conf *goconf.ConfigFile) {
+	redisServer, _ = conf.GetString("redis", "redis_server")
+	redisPassword, _ = conf.GetString("redis", "redis_password")
+	maxIdle, _ = conf.GetInt("redis", "maxIdle")
+	maxActive, _ = conf.GetInt("redis", "maxActive")
+	idleTimeout, _ = conf.GetInt("redis", "idleTimeout")
 
 	RedisPool = newPool(redisServer, redisPassword)
 
