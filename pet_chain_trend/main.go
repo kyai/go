@@ -27,7 +27,11 @@ func main() {
 	db.InitMysqlConn(conf)
 	defer db.MysqlConn.Close()
 	// server
-	ticker := time.NewTicker(time.Second * 10)
+	interval, err := conf.GetInt("app", "interval")
+	if err != nil || interval == 0 {
+		panic("interval error")
+	}
+	ticker := time.NewTicker(time.Second * time.Duration(interval))
 	func() {
 		for k := range ticker.C {
 			fmt.Println(k)
