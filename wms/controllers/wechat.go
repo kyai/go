@@ -2,19 +2,28 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
+
 	m "message_server/models"
+	"message_server/utils/logs"
+
+	"github.com/astaxie/beego"
 )
 
 type WechatController struct {
 	BaseController
 }
 
-func init() {
+type Request struct {
+	Message string      `json:"message"`
+	Tousers []string    `json:"tousers"`
+	Link    string      `json:"link"`
+	Data    interface{} `json:"data"`
 }
 
 func (c *WechatController) GetToken() {
-	token, err := m.GetToken()
+	appid := beego.AppConfig.String("wechat::appid")
+	secret := beego.AppConfig.String("wechat::secret")
+	token, err := m.GetToken(appid, secret)
 	if err != nil {
 		c.JSON("102", "error", err.Error())
 	} else {
@@ -22,56 +31,94 @@ func (c *WechatController) GetToken() {
 	}
 }
 
-type ReqCustomMsg struct {
-	Tousers []string `json:"tousers"`
-	Content string   `json:"content"`
-}
-
-func (c *WechatController) PostCustomMsg() {
-	var req ReqCustomMsg
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &req); err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-
-	token, _ := m.GetToken()
-	url := "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=" + token
-
-	for _, v := range req.Tousers {
-		data := make(map[string]interface{})
-		data["touser"] = v
-		data["msgtype"] = "text"
-		text := make(map[string]interface{})
-		text["content"] = req.Content
-		data["text"] = text
-		c.CURL("POST", url, data, nil)
+func (c *WechatController) GetTokenApp() {
+	appid := c.GetString("appid")
+	secret := c.GetString("secret")
+	token, err := m.GetToken(appid, secret)
+	if err != nil {
+		c.JSON("102", "error", err.Error())
+	} else {
+		c.JSON("101", "success", token)
 	}
 }
 
-type ReqTemplateMsg struct {
-	Tousers    []string    `json:"tousers"`
-	TemplateId string      `json:"template_id"`
-	Url        string      `json:"url"`
-	Data       interface{} `json:"data"`
-}
-
-func (c *WechatController) PostTemplateMsg() {
-	var req ReqTemplateMsg
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &req); err != nil {
-		fmt.Println(err.Error())
+func (c *WechatController) Post() {
+	var r Request
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &r); err != nil {
+		logs.Error(err.Error())
 		c.JSON("102", "error", err.Error())
 		return
 	}
 
-	token, _ := m.GetToken()
-	url := "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + token
+	if r.Message == "" {
+		c.JSON("102", "error", "Undefined message type")
+		return
+	}
 
-	for _, v := range req.Tousers {
-		data := make(map[string]interface{})
-		data["touser"] = v
-		data["template_id"] = req.TemplateId
-		data["url"] = req.Url
-		data["data"] = req.Data
-		c.CURL("POST", url, data, nil)
+	appid := beego.AppConfig.String("wechat::appid")
+	secret := beego.AppConfig.String("wechat::secret")
+	token, err := m.GetToken(appid, secret)
+	if err != nil {
+		c.JSON("102", "error", err.Error())
+		return
+	}
+
+	if tplid := m.GetTemplateId(r.Message, 0); tplid != "" {
+		url := "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + token
+		for _, v := range r.Tousers {
+			data := make(map[string]interface{})
+			data["touser"] = v
+			data["template_id"] = tplid
+			data["url"] = r.Link
+			data["data"] = r.Data
+			go m.PostMessage(url, data)
+		}
+	} else {
+		logs.Error("Has not template id", r.Message)
+	}
+}
+
+// 发送到小程序
+func (c *WechatController) PostToProgram() {
+	var r struct {
+		Message string      `json:"message"`
+		Tousers []string    `json:"tousers"`
+		Form    string      `json:"form"`
+		Link    string      `json:"link"`
+		Data    interface{} `json:"data"`
+	}
+
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &r); err != nil {
+		logs.Error(err.Error())
+		c.JSON("102", "error", err.Error())
+		return
+	}
+
+	if r.Message == "" {
+		c.JSON("102", "error", "Undefined message type")
+		return
+	}
+
+	appid := c.GetString("appid")
+	secret := c.GetString("secret")
+	token, err := m.GetToken(appid, secret)
+	if err != nil {
+		c.JSON("102", "error", err.Error())
+		return
+	}
+
+	if tplid := m.GetTemplateId(r.Message, 1); tplid != "" {
+		url := "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=" + token
+		for _, v := range r.Tousers {
+			data := make(map[string]interface{})
+			data["touser"] = v
+			data["template_id"] = tplid
+			data["form_id"] = r.Form
+			data["page"] = r.Link
+			data["data"] = r.Data
+			go m.PostMessage(url, data)
+		}
+	} else {
+		logs.Error("Has not template id", r.Message)
 	}
 }

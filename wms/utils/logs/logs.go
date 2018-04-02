@@ -23,3 +23,11 @@ func init() {
 func Error(f interface{}, v ...interface{}) {
 	logs.Error(f, v)
 }
+
+func Debug(f interface{}, v ...interface{}) {
+	logs.Debug(f, v)
+}
+
+func Info(f interface{}) {
+	logs.Informational(f)
+}

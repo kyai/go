@@ -5,61 +5,78 @@ import (
 	"fmt"
 	"message_server/utils/curl"
 	"message_server/utils/logs"
-	"time"
+	"message_server/utils/redis"
+	"strings"
 
 	"github.com/astaxie/beego"
 )
-
-var AccessToken string
-var appid, secret string
 
 type Token struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int    `json:"expires_in"`
 	Errcode     int    `json:"errcode"`
 	Errmsg      string `json:"errmsg"`
+	expires     int64
 }
 
-type MessageTpl struct {
-	Touser     string      `json:"touser"`
-	TemplateId string      `json:"template_id"`
-	Url        string      `json:"url"`
-	Data       interface{} `json:"data"`
-}
-
-func init() {
-	appid = beego.AppConfig.String("wechat::appid")
-	secret = beego.AppConfig.String("wechat::secret")
-}
-
-func GetToken() (string, error) {
-	appid := beego.AppConfig.String("wechat::appid")
-	secret := beego.AppConfig.String("wechat::secret")
-	url := fmt.Sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", appid, secret)
-	var token Token
-	curl.Do("GET", url, nil, &token)
-	if token.Errcode == 0 {
-		return token.AccessToken, nil
+func GetToken(appid, secret string) (string, error) {
+	var token string
+	if appid == "" {
+		return "", errors.New("No Appid")
+	}
+	if secret == "" {
+		return "", errors.New("No Secret")
+	}
+	// redis
+	redis_conn := redis.RedisPool.Get()
+	defer redis_conn.Close()
+	exists, err := redis.Bool(redis_conn.Do("EXISTS", appid))
+	if err != nil {
+		return "", err
+	}
+	if exists {
+		token, err = redis.String(redis_conn.Do("GET", appid))
 	} else {
-		logs.Error(token.Errmsg)
-		return "", errors.New(token.Errmsg)
+		tmp, err := GetTokenWX(appid, secret)
+		if err != nil {
+			return "", err
+		}
+		token = tmp.AccessToken
+		redis_conn.Do("SET", appid, token, "EX", tmp.ExpiresIn-1e2)
+	}
+
+	return token, err
+}
+
+func GetTokenWX(appid, secret string) (Token, error) {
+	url := fmt.Sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s", appid, secret)
+
+	var t Token
+	curl.Do("GET", url, nil, &t)
+	if t.Errcode == 0 && t.AccessToken != "" {
+		return t, nil
+	} else {
+		return t, errors.New(t.Errmsg)
 	}
 }
 
 func InitToken() {
-	AccessToken, err := GetToken()
-	if err != nil {
-		logs.Error(err)
+
+}
+
+func GetTemplateId(m string, i int) string {
+	tpl := beego.AppConfig.String("message::" + m)
+	tpls := strings.Split(tpl, "|")
+	if i < len(tpls) {
+		return tpls[i]
+	} else {
+		return ""
 	}
-	ticker := time.NewTicker(time.Second * time.Duration(5000))
-	func() {
-		for k := range ticker.C {
-			AccessToken, err = GetToken()
-			if err != nil {
-				logs.Error(err)
-			}
-			fmt.Println(k)
-			fmt.Println(AccessToken)
-		}
-	}()
+}
+
+func PostMessage(url string, data map[string]interface{}) interface{} {
+	var resp interface{}
+	curl.Do("POST", url, data, &resp)
+	logs.Debug(resp)
+	return resp
 }
