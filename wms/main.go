@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+import (
+	m "message_server/models"
+	_ "message_server/routers"
+	"message_server/utils/redis"
 
-// _ "message_server/routers"
+	"github.com/astaxie/beego"
+)
 
 func main() {
 	// if beego.BConfig.RunMode == "dev" {
@@ -11,10 +15,10 @@ func main() {
 	// }
 
 	// redis
-	// redis.InitRedisPool()
+	redis.InitRedisPool()
 
-	// m.InitToken()
-	// go m.InitSocket()
-	// beego.Run()
-	fmt.Println("test")
+	// socket
+	go m.InitSocket()
+
+	beego.Run()
 }

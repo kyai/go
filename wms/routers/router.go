@@ -7,18 +7,22 @@ import (
 )
 
 func init() {
-	ns := beego.NewNamespace("/v1",
-		beego.NSNamespace("/default",
-			beego.NSInclude(
-				&controllers.DefaultController{},
-			),
-		),
-	)
-	beego.AddNamespace(ns)
+	// ns := beego.NewNamespace("/v1",
+	// 	beego.NSNamespace("/default",
+	// 		beego.NSInclude(
+	// 			&controllers.DefaultController{},
+	// 		),
+	// 	),
+	// )
+	// beego.AddNamespace(ns)
 
 	beego.Router("/", &controllers.DefaultController{})
+	beego.Router("/GetLog", &controllers.ManageController{}, "get:GetLog")
 	beego.Router("/Post", &controllers.WechatController{}, "post:Post")
 	beego.Router("/PostToProgram", &controllers.WechatController{}, "post:PostToProgram")
 	beego.Router("/GetToken", &controllers.WechatController{}, "get:GetToken")
 	beego.Router("/GetTokenApp", &controllers.WechatController{}, "get:GetTokenApp")
+
+	// test
+	beego.Router("/Send", &controllers.SocketController{}, "get:Send")
 }
