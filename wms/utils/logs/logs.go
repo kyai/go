@@ -13,7 +13,7 @@ func init() {
 
 	logs.Async(1e3)
 
-	logs.SetLogger(logs.AdapterFile, `{"filename":"kms.log"}`)
+	logs.SetLogger(logs.AdapterFile, `{"filename":"logs/app.log"}`)
 
 	if beego.BConfig.RunMode == "pro" {
 		logs.SetLevel(logs.LevelError)

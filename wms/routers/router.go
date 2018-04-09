@@ -17,7 +17,6 @@ func init() {
 	// beego.AddNamespace(ns)
 
 	beego.Router("/", &controllers.DefaultController{})
-	beego.Router("/GetLog", &controllers.ManageController{}, "get:GetLog")
 	beego.Router("/Post", &controllers.WechatController{}, "post:Post")
 	beego.Router("/PostToProgram", &controllers.WechatController{}, "post:PostToProgram")
 	beego.Router("/GetToken", &controllers.WechatController{}, "get:GetToken")
@@ -25,4 +24,7 @@ func init() {
 
 	// test
 	beego.Router("/Send", &controllers.SocketController{}, "get:Send")
+
+	// manage
+	beego.Router("/manage_api/GetLog", &controllers.ManageController{}, "get:GetLog")
 }

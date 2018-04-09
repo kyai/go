@@ -1,0 +1,32 @@
+2018/04/09 09:58:27 [I] [log.go:605] Websocket Running on :9901
+2018/04/09 09:58:27 [I] [log.go:610] http server Running on http://0.0.0.0:9909
+2018/04/09 09:58:27 [I] [log.go:610] Admin server Running on :8088
+2018/04/09 10:28:16 [I] [log.go:605] Websocket Running on :9901
+2018/04/09 10:28:16 [I] [log.go:610] http server Running on http://0.0.0.0:9909
+2018/04/09 10:28:16 [I] [log.go:610] Admin server Running on :8088
+2018/04/09 10:29:38 [I] [log.go:605] Websocket Running on :9901
+2018/04/09 10:29:38 [I] [log.go:610] http server Running on http://0.0.0.0:9909
+2018/04/09 10:29:38 [I] [log.go:610] Admin server Running on :8088
+2018/04/09 10:54:40 [I] [log.go:605] Websocket Running on :9901
+2018/04/09 10:54:40 [I] [log.go:610] http server Running on http://0.0.0.0:9909
+2018/04/09 10:54:40 [I] [log.go:610] Admin server Running on :8088
+2018/04/09 10:54:44 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|     371.28µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:54:49 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|     140.13µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:54:52 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    181.588µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:17 [I] [log.go:605] Websocket Running on :9901
+2018/04/09 10:55:17 [I] [log.go:610] http server Running on http://0.0.0.0:9909
+2018/04/09 10:55:17 [I] [log.go:610] Admin server Running on :8088
+2018/04/09 10:55:19 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    274.328µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:22 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    142.452µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:24 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    187.371µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:27 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|     97.902µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:45 [I] [log.go:605] Websocket Running on :9901
+2018/04/09 10:55:45 [I] [log.go:610] http server Running on http://0.0.0.0:9909
+2018/04/09 10:55:45 [I] [log.go:610] Admin server Running on :8088
+2018/04/09 10:55:45 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|      526.5µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:50 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    156.863µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:55:53 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    220.961µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:56:14 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|     219.93µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:56:41 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    299.895µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:56:44 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    165.435µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
+2018/04/09 10:56:46 [D] [log.go:615] |      127.0.0.1|[42m 200 [0m|    292.754µs|   match|[44m GET     [0m /manage_api/GetLog   r:/manage_api/GetLog
