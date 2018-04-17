@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	m "message_server/models"
 	"message_server/utils/file"
 	"time"
 )
@@ -16,8 +17,8 @@ func (c *ManageController) GetLog() {
 		if err != nil {
 			c.JSON("102", "error", err.Error())
 		}
-		date = timep.Format("01-02")
-		if date == time.Now().Format("01-02") {
+		date = timep.Format("2006-01-02")
+		if date == time.Now().Format("2006-01-02") {
 			date = ""
 		} else {
 			date += "."
@@ -31,4 +32,9 @@ func (c *ManageController) GetLog() {
 	} else {
 		c.JSON("101", "success", data)
 	}
+}
+
+func (c *ManageController) ReWxCache() {
+	m.InitWechat()
+	c.JSON("101", "success", nil)
 }

@@ -3,7 +3,8 @@ package main
 import (
 	m "message_server/models"
 	_ "message_server/routers"
-	"message_server/utils/redis"
+	"message_server/utils/db"
+	_ "message_server/utils/proc"
 
 	"github.com/astaxie/beego"
 )
@@ -14,8 +15,14 @@ func main() {
 	// 	beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	// }
 
+	// mysql
+	db.InitMysqlConn()
+	defer db.MysqlConn.Close()
+
 	// redis
-	redis.InitRedisPool()
+	db.InitRedisPool()
+
+	m.InitWechat()
 
 	// socket
 	go m.InitSocket()

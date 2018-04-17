@@ -34,12 +34,35 @@ func (c *WechatController) GetToken() {
 func (c *WechatController) GetTokenApp() {
 	appid := c.GetString("appid")
 	secret := c.GetString("secret")
+	if secret == "" {
+		secret, _ = m.GetSecret(appid)
+	}
 	token, err := m.GetToken(appid, secret)
 	if err != nil {
 		c.JSON("102", "error", err.Error())
 	} else {
 		c.JSON("101", "success", token)
 	}
+}
+
+// temp test
+func (c *WechatController) GetSecret() {
+	appid := c.GetString("appid")
+	secret, err := m.GetSecret(appid)
+	if err != nil {
+		logs.Error(err)
+	}
+	c.JSON("101", "success", secret)
+}
+
+func (c *WechatController) GetTemplate() {
+	appid := c.GetString("appid")
+	mtype := c.GetString("mtype")
+	tplid, err := m.GetTemplate(appid, mtype)
+	if err != nil {
+		logs.Error(err)
+	}
+	c.JSON("101", "success", tplid)
 }
 
 func (c *WechatController) Post() {
@@ -101,13 +124,16 @@ func (c *WechatController) PostToProgram() {
 
 	appid := c.GetString("appid")
 	secret := c.GetString("secret")
+	if secret == "" {
+		secret, _ = m.GetSecret(appid)
+	}
 	token, err := m.GetToken(appid, secret)
 	if err != nil {
 		c.JSON("102", "error", err.Error())
 		return
 	}
 
-	if tplid := m.GetTemplateId(r.Message, 1); tplid != "" {
+	if tplid, _ := m.GetTemplate(appid, r.Message); tplid != "" {
 		url := "https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=" + token
 		for _, v := range r.Tousers {
 			data := make(map[string]interface{})

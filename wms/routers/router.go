@@ -23,8 +23,13 @@ func init() {
 	beego.Router("/GetTokenApp", &controllers.WechatController{}, "get:GetTokenApp")
 
 	// test
+	beego.Router("/GetTokenTest", &controllers.WechatDevController{}, "get:GetTokenTest")
+	beego.Router("/PostTest", &controllers.WechatDevController{}, "post:PostTest")
 	beego.Router("/Send", &controllers.SocketController{}, "get:Send")
+	beego.Router("/GetSecret", &controllers.WechatController{}, "get:GetSecret")
+	beego.Router("/GetTemplate", &controllers.WechatController{}, "get:GetTemplate")
 
 	// manage
 	beego.Router("/manage_api/GetLog", &controllers.ManageController{}, "get:GetLog")
+	beego.Router("/manage_api/ReWxCache", &controllers.ManageController{}, "get:ReWxCache")
 }
