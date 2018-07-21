@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>OpenWallet商户接口V1</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/maizhiquan/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="openwallet%E5%95%86%E6%88%B7%E6%8E%A5%E5%8F%A3v1">OpenWallet商户接口V1</h1>
+
+<ul>
+<li><a href="#openwallet%E5%95%86%E6%88%B7%E6%8E%A5%E5%8F%A3v1">OpenWallet商户接口V1</a>
+<ul>
+<li><a href="#%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</a></li>
+<li><a href="#1-%E6%A6%82%E8%BF%B0">1 概述</a></li>
+<li><a href="#2-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE">2 通信协议</a></li>
+<li><a href="#3-%E9%92%B1%E5%8C%85%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3%E6%96%B9%E6%B3%95">3 钱包管理接口方法</a>
+<ul>
+<li><a href="#31-%E8%AE%A2%E9%98%85%E6%96%B9%E6%B3%95-subscribe">3.1 订阅方法 <code>subscribe</code></a>
+<ul>
+<li><a href="#%E8%AE%A2%E9%98%85%E5%86%85%E5%AE%B9-subscription">订阅内容 <code>Subscription</code></a></li>
+</ul>
+</li>
+<li><a href="#32-%E9%92%B1%E5%8C%85%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE%E6%8E%A5%E5%8F%A3-config">3.2 钱包工具配置接口 <code>config</code></a></li>
+<li><a href="#33-%E8%8E%B7%E5%8F%96%E9%92%B1%E5%8C%85%E5%88%97%E8%A1%A8-getwalletlist">3.3 获取钱包列表 <code>getWalletList</code></a>
+<ul>
+<li><a href="#%E9%92%B1%E5%8C%85%E4%BF%A1%E6%81%AF-wallet">钱包信息 <code>Wallet</code></a></li>
+</ul>
+</li>
+<li><a href="#34-%E6%8F%90%E4%BA%A4%E8%BD%AC%E8%B4%A6%E4%BA%A4%E6%98%93-submittransaction">3.4 提交转账交易 <code>submitTransaction</code></a></li>
+<li><a href="#35-%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85-createwallet">3.5 创建钱包 <code>createWallet</code></a></li>
+<li><a href="#36-%E5%88%9B%E5%BB%BA%E5%9C%B0%E5%9D%80-createaddress">3.6 创建地址 <code>createAddress</code></a>
+<ul>
+<li><a href="#%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF-address">地址信息 <code>Address</code></a></li>
+</ul>
+</li>
+<li><a href="#38-%E8%8E%B7%E5%8F%96%E5%9C%B0%E5%9D%80%E5%88%97%E8%A1%A8-getaddresslist">3.8 获取地址列表 <code>getAddressList</code></a></li>
+</ul>
+</li>
+<li><a href="#4-%E5%95%86%E6%88%B7%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%96%B9%E6%B3%95">4 商户服务接口方法</a>
+<ul>
+<li><a href="#41-%E8%8E%B7%E5%8F%96%E8%AE%A2%E9%98%85%E5%9C%B0%E5%9D%80%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF-getchargeaddressversion">4.1 获取订阅地址版本信息 <code>getChargeAddressVersion</code></a></li>
+<li><a href="#42-%E8%8E%B7%E5%8F%96%E8%AE%A2%E9%98%85%E7%9A%84%E5%9C%B0%E5%9D%80%E8%A1%A8-getchargeaddress">4.2 获取订阅的地址表 <code>getChargeAddress</code></a></li>
+<li><a href="#43-%E6%8F%90%E4%BA%A4%E5%85%85%E5%80%BC%E5%88%B0%E8%B4%A6%E8%AE%B0%E5%BD%95-submitrechargetrasaction">4.3 提交充值到账记录 <code>submitRechargeTrasaction</code></a>
+<ul>
+<li><a href="#%E4%BA%A4%E6%98%93%E5%8D%95-transaction">交易单 <code>Transaction</code></a></li>
+</ul>
+</li>
+<li><a href="#44-%E6%8F%90%E4%BA%A4%E6%8F%90%E7%8E%B0%E7%A1%AE%E8%AE%A4%E9%80%9A%E7%9F%A5-submitwithdrawconfirmation">4.4 提交提现确认通知 <code>submitWithdrawConfirmation</code></a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%95%86%E6%88%B7%E4%B8%8Ewmd%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B">5. 商户与wmd交互流程</a></li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</h2>
+
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>时间</th>
+<th>修订人</th>
+<th>修订内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>2018-06-09</td>
+<td>麦志泉，梁东炘</td>
+<td>创建文档</td>
+</tr>
+<tr>
+<td>1.0.1</td>
+<td>2018-07-02</td>
+<td>麦志泉</td>
+<td>新增获取订阅地址版本信息</td>
+</tr>
+<tr>
+<td>1.0.2</td>
+<td>2018-07-04</td>
+<td>麦志泉</td>
+<td>通信协议抽象为OWTP协议说明</td>
+</tr>
+<tr>
+<td>1.0.3</td>
+<td>2018-07-07</td>
+<td>麦志泉</td>
+<td>补充流程说明，新增相关方法</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="1-%E6%A6%82%E8%BF%B0">1 概述</h2>
+
+<p>本文档编写目的为说明OpenWallet商户API与钱包管理工具的安全通信协议。<br>
+通信协议底层基于websocket，由商户SDK建立API服务，钱包主动发起连接服务，在安全机制下进行消息交互。<br>
+商户的业务系统可通过SDK订阅需要的数字货币钱包数据内容，钱包管理工具根据订阅指令，推送数据给商户SDK。</p>
+<h2 class="mume-header" id="2-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE">2 通信协议</h2>
+
+<p>钱包与商户的业务接口交互基于OWTP协议进行实现。详细查看<a href="./OWTP%E5%8D%8F%E8%AE%AE%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1.md">《OWTP协议框架设计》</a></p>
+<h2 class="mume-header" id="3-%E9%92%B1%E5%8C%85%E7%AE%A1%E7%90%86%E6%8E%A5%E5%8F%A3%E6%96%B9%E6%B3%95">3 钱包管理接口方法</h2>
+
+<h3 class="mume-header" id="31-%E8%AE%A2%E9%98%85%E6%96%B9%E6%B3%95-subscribe">3.1 订阅方法 <code>subscribe</code></h3>
+
+<p>由商户向钱包方调用需要订阅的内容</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>subscriptions</td>
+<td>[Subscription]</td>
+<td>否</td>
+<td>订阅数组</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="%E8%AE%A2%E9%98%85%E5%86%85%E5%AE%B9-subscription">订阅内容 <code>Subscription</code></h4>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>int</td>
+<td>否</td>
+<td>订阅类型，1：钱包余额，2：充值记录，3：汇总日志</td>
+</tr>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>订阅的币种钱包类型</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包账户id，由商户定义，可与钱包主机里的钱包账户关联，也可与订阅地址关联</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"subscriptions"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>
+            <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>
+            <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"2"</span><span class="token punctuation">,</span>
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+            <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">1565645356</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btm"</span><span class="token punctuation">,</span>
+            <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"3"</span><span class="token punctuation">,</span>
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</pre><p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="32-%E9%92%B1%E5%8C%85%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE%E6%8E%A5%E5%8F%A3-config">3.2 钱包工具配置接口 <code>config</code></h3>
+
+<p>商户向wmd设置某个币种钱包的参数。</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币种标识</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID，商户定义</td>
+</tr>
+<tr>
+<td>surplus</td>
+<td>string</td>
+<td>否</td>
+<td>剩余额，设置后，【余额—剩余额】低于第一笔提币金额则不提币(默认为0)</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>否</td>
+<td>提币矿工费</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>int</td>
+<td>否</td>
+<td>确认次数(达到该确认次数后不再推送确认，默认30)</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token property">"configs"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>  
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+            <span class="token property">"surplus"</span><span class="token operator">:</span> <span class="token string">"10000"</span><span class="token punctuation">,</span>
+            <span class="token property">"fee"</span><span class="token operator">:</span> <span class="token string">"100000"</span><span class="token punctuation">,</span>
+            <span class="token property">"confirm"</span><span class="token operator">:</span> <span class="token number">30</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btm"</span><span class="token punctuation">,</span>  
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+            <span class="token property">"surplus"</span><span class="token operator">:</span> <span class="token string">"10000"</span><span class="token punctuation">,</span>
+            <span class="token property">"fee"</span><span class="token operator">:</span> <span class="token string">"100000"</span><span class="token punctuation">,</span>
+            <span class="token property">"confirm"</span><span class="token operator">:</span> <span class="token number">30</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+
+<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+</pre><p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="33-%E8%8E%B7%E5%8F%96%E9%92%B1%E5%8C%85%E5%88%97%E8%A1%A8-getwalletlist">3.3 获取钱包列表 <code>getWalletList</code></h3>
+
+<p>获取节点所提供的钱包列表</p>
+<p><strong>请求参数</strong></p>
+<p>无</p>
+<p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wallets</td>
+<td>[Wallet]</td>
+<td>否</td>
+<td>钱包信息数组</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="%E9%92%B1%E5%8C%85%E4%BF%A1%E6%81%AF-wallet">钱包信息 <code>Wallet</code></h4>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>alias</td>
+<td>string</td>
+<td>否</td>
+<td>钱包别名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>publicKey</td>
+<td>string</td>
+<td>是</td>
+<td>钱包公钥</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>否</td>
+<td>余额</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coins"</span><span class="token operator">:</span>
+    <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"btc"</span><span class="token punctuation">,</span>
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"ADFVSDF"</span><span class="token punctuation">,</span>
+            <span class="token property">"balance"</span><span class="token operator">:</span><span class="token string">"598443"</span><span class="token punctuation">,</span>
+            <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+            <span class="token property">"publicKey"</span><span class="token operator">:</span> <span class="token string">"sdfsf"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="34-%E6%8F%90%E4%BA%A4%E8%BD%AC%E8%B4%A6%E4%BA%A4%E6%98%93-submittransaction">3.4 提交转账交易 <code>submitTransaction</code></h3>
+
+<p>商户向钱包工具发起提币，可以发起多笔提币输出，钱包工具自动组合成多输出交易单</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>withdraws</td>
+<td>[Object]]</td>
+<td>否</td>
+<td>所需提币条目 （每个为一个withdraw）</td>
+</tr>
+<tr>
+<td>-&gt; coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>-&gt; walletID</td>
+<td>string</td>
+<td>否</td>
+<td>每次返回的代提币条目数（1-50</td>
+</tr>
+<tr>
+<td>-&gt; sid</td>
+<td>string</td>
+<td>否</td>
+<td>安全id（防止重复提交）</td>
+</tr>
+<tr>
+<td>-&gt; isMemo</td>
+<td>int</td>
+<td>否</td>
+<td>1为memo，0为address</td>
+</tr>
+<tr>
+<td>-&gt; address</td>
+<td>string</td>
+<td>否</td>
+<td>地址（账号）</td>
+</tr>
+<tr>
+<td>-&gt; amount</td>
+<td>string</td>
+<td>否</td>
+<td>提笔金额</td>
+</tr>
+<tr>
+<td>-&gt; memo</td>
+<td>string</td>
+<td>是</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+ <span class="token punctuation">{</span>
+    <span class="token property">"withdraws"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+         <span class="token punctuation">{</span>
+             <span class="token property">"sid"</span><span class="token operator">:</span><span class="token string">"4343"</span><span class="token punctuation">,</span>
+             <span class="token property">"address"</span><span class="token operator">:</span><span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr3"</span><span class="token punctuation">,</span>
+             <span class="token property">"amount"</span><span class="token operator">:</span><span class="token string">"323.44"</span><span class="token punctuation">,</span>
+             <span class="token property">"isMemo"</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+             <span class="token property">"memo"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span>
+             <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"btc"</span><span class="token punctuation">,</span>
+             <span class="token property">"walletID"</span><span class="token operator">:</span><span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+         <span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span>
+             <span class="token property">"sid"</span><span class="token operator">:</span><span class="token string">"4344"</span><span class="token punctuation">,</span>
+             <span class="token property">"address"</span><span class="token operator">:</span><span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr3"</span><span class="token punctuation">,</span>
+             <span class="token property">"amount"</span><span class="token operator">:</span><span class="token string">"111.44"</span><span class="token punctuation">,</span>
+             <span class="token property">"isMemo"</span><span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>
+             <span class="token property">"memo"</span><span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">,</span>
+             <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"btc"</span><span class="token punctuation">,</span>
+             <span class="token property">"walletID"</span><span class="token operator">:</span><span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+         <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+ 
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>withdraws</td>
+<td>JSONArray</td>
+<td>否</td>
+<td>交易单数组</td>
+</tr>
+<tr>
+<td>-&gt; sid</td>
+<td>string</td>
+<td>否</td>
+<td>安全id</td>
+</tr>
+<tr>
+<td>-&gt; txid</td>
+<td>string</td>
+<td>否</td>
+<td>交易单id</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"status"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token property">"msg"</span><span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span>
+    <span class="token property">"result"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"withdraws"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+         <span class="token punctuation">{</span>
+             <span class="token property">"sid"</span><span class="token operator">:</span><span class="token string">"4343"</span><span class="token punctuation">,</span>
+             <span class="token property">"txid"</span><span class="token operator">:</span><span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr3"</span><span class="token punctuation">,</span>
+
+         <span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span>
+             <span class="token property">"sid"</span><span class="token operator">:</span><span class="token string">"4344"</span><span class="token punctuation">,</span>
+             <span class="token property">"txid"</span><span class="token operator">:</span><span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr3"</span><span class="token punctuation">,</span>
+
+         <span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="35-%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85-createwallet">3.5 创建钱包 <code>createWallet</code></h3>
+
+<p>商户创建钱包，一般用于商户管理热钱包</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币种标识</td>
+</tr>
+<tr>
+<td>alias</td>
+<td>string</td>
+<td>否</td>
+<td>钱包别名</td>
+</tr>
+<tr>
+<td>passwordType</td>
+<td>uint</td>
+<td>否</td>
+<td>0：自定义密码，1：协商密码</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>是</td>
+<td>自定义密码</td>
+</tr>
+<tr>
+<td>authKey</td>
+<td>string</td>
+<td>是</td>
+<td>授权公钥</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>  
+    <span class="token property">"alias"</span><span class="token operator">:</span> <span class="token string">"go_wallet"</span><span class="token punctuation">,</span>
+    <span class="token property">"passwordType"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token property">"password"</span><span class="token operator">:</span> <span class="token string">"123456"</span>
+<span class="token punctuation">}</span>
+
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>wallet</td>
+<td>Wallet</td>
+<td>否</td>
+<td>钱包信息数组</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"btc"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+    <span class="token property">"balance"</span><span class="token operator">:</span><span class="token string">"598443"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="36-%E5%88%9B%E5%BB%BA%E5%9C%B0%E5%9D%80-createaddress">3.6 创建地址 <code>createAddress</code></h3>
+
+<p>创建钱包地址，地址一般用于热钱包的充值</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币种标识</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>count</td>
+<td>uint</td>
+<td>否</td>
+<td>条数</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>  
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"121212"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addresses</td>
+<td>[Address]</td>
+<td>否</td>
+<td>地址数组</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF-address">地址信息 <code>Address</code></h4>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address</td>
+<td>string</td>
+<td>否</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>string</td>
+<td>否</td>
+<td>余额</td>
+</tr>
+<tr>
+<td>isMemo</td>
+<td>bool</td>
+<td>是</td>
+<td>是否memo</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>否</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"addresses"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"btc"</span><span class="token punctuation">,</span>
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+            <span class="token property">"balance"</span><span class="token operator">:</span><span class="token string">"598443"</span><span class="token punctuation">,</span>
+            <span class="token property">"isMemo"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token property">"memo"</span><span class="token operator">:</span> <span class="token string">"ABC"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="38-%E8%8E%B7%E5%8F%96%E5%9C%B0%E5%9D%80%E5%88%97%E8%A1%A8-getaddresslist">3.8 获取地址列表 <code>getAddressList</code></h3>
+
+<p>获取钱包地址，一般用于给财务查看热钱包地址</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币种标识</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>uint</td>
+<td>是</td>
+<td>从0开始</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>uint</td>
+<td>是</td>
+<td>查询条数</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>  
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"121212"</span><span class="token punctuation">,</span>
+    <span class="token property">"offset"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token property">"limit"</span><span class="token operator">:</span> <span class="token number">20</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addresses</td>
+<td>[Address]</td>
+<td>否</td>
+<td>地址数组</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"addresses"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"btc"</span><span class="token punctuation">,</span>
+            <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+            <span class="token property">"balance"</span><span class="token operator">:</span><span class="token string">"598443"</span><span class="token punctuation">,</span>
+            <span class="token property">"isMemo"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token property">"memo"</span><span class="token operator">:</span> <span class="token string">"ABC"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</pre><h2 class="mume-header" id="4-%E5%95%86%E6%88%B7%E6%9C%8D%E5%8A%A1%E6%8E%A5%E5%8F%A3%E6%96%B9%E6%B3%95">4 商户服务接口方法</h2>
+
+<h3 class="mume-header" id="41-%E8%8E%B7%E5%8F%96%E8%AE%A2%E9%98%85%E5%9C%B0%E5%9D%80%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF-getchargeaddressversion">4.1 获取订阅地址版本信息 <code>getChargeAddressVersion</code></h3>
+
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"23123"</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>total</td>
+<td>int</td>
+<td>否</td>
+<td>总数量</td>
+</tr>
+<tr>
+<td>version</td>
+<td>string</td>
+<td>否</td>
+<td>版本号</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"23123"</span><span class="token punctuation">,</span>
+    <span class="token property">"total"</span><span class="token operator">:</span> <span class="token number">22000</span><span class="token punctuation">,</span>
+    <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">1122</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="42-%E8%8E%B7%E5%8F%96%E8%AE%A2%E9%98%85%E7%9A%84%E5%9C%B0%E5%9D%80%E8%A1%A8-getchargeaddress">4.2 获取订阅的地址表 <code>getChargeAddress</code></h3>
+
+<p>若商户订阅了充值记录推送，钱包管理工具会去下载商户的要订阅的地址列表<br>
+通过偏移量</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>否</td>
+<td>偏移量</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>否</td>
+<td>读取条数</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"23123"</span><span class="token punctuation">,</span>
+    <span class="token property">"offset"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token property">"limit"</span><span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>addresses</td>
+<td>[Address]</td>
+<td>否</td>
+<td>地址参数(内容为address)</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"addresses"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+            <span class="token property">"address"</span><span class="token operator">:</span> <span class="token string">"1N5GUkhhvYYAMBSSqdc9EkiqSxAY4Pd19y"</span><span class="token punctuation">,</span>
+            <span class="token property">"isMemo"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+            <span class="token property">"memo"</span><span class="token operator">:</span> <span class="token string">"ABC"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="43-%E6%8F%90%E4%BA%A4%E5%85%85%E5%80%BC%E5%88%B0%E8%B4%A6%E8%AE%B0%E5%BD%95-submitrechargetrasaction">4.3 提交充值到账记录 <code>submitRechargeTrasaction</code></h3>
+
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID，由商户定义，与订阅地址关联</td>
+</tr>
+<tr>
+<td>recharges</td>
+<td>[Transaction]</td>
+<td>否</td>
+<td>充值列表</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="%E4%BA%A4%E6%98%93%E5%8D%95-transaction">交易单 <code>Transaction</code></h4>
+
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>txid</td>
+<td>string</td>
+<td>否</td>
+<td>唯一交易单号</td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>否</td>
+<td>发送地址</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>否</td>
+<td>接收地址</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>否</td>
+<td>充值金额</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>int</td>
+<td>否</td>
+<td>确认数</td>
+</tr>
+<tr>
+<td>blockHash</td>
+<td>string</td>
+<td>否</td>
+<td>区块哈希</td>
+</tr>
+<tr>
+<td>blockHeight</td>
+<td>string</td>
+<td>否</td>
+<td>区块链高度（可以是组合高度例如ada 53_11323，poch_slot）</td>
+</tr>
+<tr>
+<td>isMemo</td>
+<td>int</td>
+<td>否</td>
+<td>1为memo，0为address</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>否</td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+	<span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"BTM"</span><span class="token punctuation">,</span>
+	<span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+	<span class="token property">"recharges"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+			<span class="token property">"txid"</span><span class="token operator">:</span> <span class="token string">"ajdiojauwiefj..."</span><span class="token punctuation">,</span>
+			<span class="token property">"from"</span><span class="token operator">:</span> <span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr3"</span><span class="token punctuation">,</span>
+			<span class="token property">"to"</span><span class="token operator">:</span> <span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr2"</span><span class="token punctuation">,</span>
+			<span class="token property">"amount"</span><span class="token operator">:</span> <span class="token string">"1.2332"</span><span class="token punctuation">,</span>
+			<span class="token property">"confirm"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+			<span class="token property">"blockHash"</span><span class="token operator">:</span> <span class="token string">"daiosdjioqjwoejjeijisa..."</span><span class="token punctuation">,</span>
+			<span class="token property">"blockHeight"</span><span class="token operator">:</span> <span class="token string">"daiosdjioqjwoejjeijisa..."</span><span class="token punctuation">,</span>
+			<span class="token property">"isMemo"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+			<span class="token property">"memo"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">"txid"</span><span class="token operator">:</span> <span class="token string">"ajdiojauwiefj..."</span><span class="token punctuation">,</span>
+			<span class="token property">"from"</span><span class="token operator">:</span> <span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr3"</span><span class="token punctuation">,</span>
+			<span class="token property">"to"</span><span class="token operator">:</span> <span class="token string">"bm1q3dmwc4ldxghfep98easlktv4lewy5n489hwsr2"</span><span class="token punctuation">,</span>
+			<span class="token property">"amount"</span><span class="token operator">:</span> <span class="token string">"1.2332"</span><span class="token punctuation">,</span>
+			<span class="token property">"confirm"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+			<span class="token property">"blockHash"</span><span class="token operator">:</span> <span class="token string">"daiosdjioqjwoejjeijisa..."</span><span class="token punctuation">,</span>
+			<span class="token property">"blockHeight"</span><span class="token operator">:</span> <span class="token string">"daiosdjioqjwoejjeijisa..."</span><span class="token punctuation">,</span>
+			<span class="token property">"isMemo"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+			<span class="token property">"memo"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+ 
+</pre><p><strong>回调参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID，商户定义</td>
+</tr>
+<tr>
+<td>txids</td>
+<td>JsonArray</td>
+<td>否</td>
+<td>已录入的交易单ID</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"BTM"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+    <span class="token property">"txids"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token string">"dajiosjdioajsd....."</span><span class="token punctuation">,</span><span class="token string">"grweogniodsfng...."</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</pre><h3 class="mume-header" id="44-%E6%8F%90%E4%BA%A4%E6%8F%90%E7%8E%B0%E7%A1%AE%E8%AE%A4%E9%80%9A%E7%9F%A5-submitwithdrawconfirmation">4.4 提交提现确认通知 <code>submitWithdrawConfirmation</code></h3>
+
+<p>钱包端监测到商户转账交易已在区块链确认了，就提交确认通知给商户。</p>
+<p><strong>请求参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID</td>
+</tr>
+<tr>
+<td>txid</td>
+<td>string</td>
+<td>否</td>
+<td>交易单</td>
+</tr>
+<tr>
+<td>confirmation</td>
+<td>uint</td>
+<td>否</td>
+<td>确认数</td>
+</tr>
+</tbody>
+</table>
+<p><code>请求实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span> <span class="token string">"btc"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"23123"</span><span class="token punctuation">,</span>
+    <span class="token property">"txid"</span><span class="token operator">:</span> <span class="token string">"23424234"</span><span class="token punctuation">,</span>
+    <span class="token property">"confirmation"</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+</pre><p><strong>响应参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>类型</th>
+<th>是否可空</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>coin</td>
+<td>string</td>
+<td>否</td>
+<td>币名</td>
+</tr>
+<tr>
+<td>walletID</td>
+<td>string</td>
+<td>否</td>
+<td>钱包ID，商户定义</td>
+</tr>
+<tr>
+<td>txids</td>
+<td>JsonArray</td>
+<td>否</td>
+<td>确认数已达标的交易单ID</td>
+</tr>
+</tbody>
+</table>
+<p><code>响应实例</code></p>
+<pre data-role="codeBlock" data-info="json" class="language-json">
+<span class="token punctuation">{</span>
+    <span class="token property">"coin"</span><span class="token operator">:</span><span class="token string">"BTM"</span><span class="token punctuation">,</span>
+    <span class="token property">"walletID"</span><span class="token operator">:</span> <span class="token string">"MYWALLET"</span><span class="token punctuation">,</span>
+    <span class="token property">"txids"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token string">"dajiosjdioajsd....."</span><span class="token punctuation">,</span><span class="token string">"grweogniodsfng...."</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+</pre><h2 class="mume-header" id="5-%E5%95%86%E6%88%B7%E4%B8%8Ewmd%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B">5. 商户与wmd交互流程</h2>
+
+<p><img src="../attachment/jpg/%E5%95%86%E6%88%B7%E4%B8%8E%E9%92%B1%E5%8C%85%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B!%E5%95%86%E6%88%B7%E4%B8%8E%E9%92%B1%E5%8C%85%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B!%E5%95%86%E6%88%B7%E4%B8%8E%E9%92%B1%E5%8C%85%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B_17.jpg" alt="&#x5546;&#x6237;&#x4E0E;wmd&#x4EA4;&#x4E92;&#x6D41;&#x7A0B;"></p>
+
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>

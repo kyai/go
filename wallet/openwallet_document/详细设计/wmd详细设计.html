@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>wmd详细设计</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/maizhiquan/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.5/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="wmd%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1">wmd详细设计</h1>
+
+<h2 class="mume-header" id="%E6%A6%82%E8%BF%B0">概述</h2>
+
+<ul>
+<li><a href="#wmd%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1">wmd详细设计</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</a></li>
+<li><a href="#1-wmd%E4%BB%8B%E7%BB%8D">1. wmd介绍</a></li>
+<li><a href="#2-%E9%9C%80%E6%B1%82%E8%A6%81%E7%82%B9">2. 需求要点</a></li>
+<li><a href="#3-%E5%8A%9F%E8%83%BD%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1-wmd">3. 功能详细设计 <code>wmd</code></a>
+<ul>
+<li><a href="#%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0">可选参数</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">文件目录结构</a></li>
+<li><a href="#31-%E8%8A%82%E7%82%B9%E7%AE%A1%E7%90%86-node">3.1 节点管理 <code>node</code></a>
+<ul>
+<li><a href="#311-%E5%AE%89%E8%A3%85%E8%8A%82%E7%82%B9-install">3.1.1 安装节点 <code>install</code></a></li>
+<li><a href="#312-%E5%90%AF%E5%8A%A8%E8%8A%82%E7%82%B9-start">3.1.2 启动节点 <code>start</code></a></li>
+<li><a href="#313-%E5%85%B3%E9%97%AD%E8%8A%82%E7%82%B9-stop">3.1.3 关闭节点 <code>stop</code></a></li>
+<li><a href="#314-%E9%87%8D%E5%90%AF%E8%8A%82%E7%82%B9-restart">3.1.4 重启节点 <code>restart</code></a></li>
+<li><a href="#315-%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF-info">3.1.5 节点信息 <code>info</code></a></li>
+<li><a href="#316-%E9%85%8D%E7%BD%AE%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF-config">3.1.6 配置节点信息 <code>config</code></a></li>
+</ul>
+</li>
+<li><a href="#32-%E9%92%B1%E5%8C%85%E7%AE%A1%E7%90%86-wallet">3.2 钱包管理 <code>wallet</code></a>
+<ul>
+<li><a href="#321-%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85-new">3.2.1 创建钱包 <code>new</code></a></li>
+<li><a href="#322-%E6%9F%A5%E7%9C%8B%E9%92%B1%E5%8C%85%E5%88%97%E8%A1%A8-list">3.2.2 查看钱包列表 <code>list</code></a></li>
+<li><a href="#323-%E5%A4%87%E4%BB%BD%E9%92%B1%E5%8C%85-backup">3.2.3 备份钱包 <code>backup</code></a></li>
+<li><a href="#324-%E6%81%A2%E5%A4%8D%E9%92%B1%E5%8C%85-restore">3.2.4 恢复钱包 <code>restore</code></a></li>
+<li><a href="#325-%E6%89%B9%E9%87%8F%E5%88%9B%E5%BB%BA%E5%9C%B0%E5%9D%80-batchaddr">3.2.5 批量创建地址 <code>batchaddr</code></a></li>
+<li><a href="#326-%E8%B5%84%E4%BA%A7%E8%BD%AC%E8%B4%A6-transfer">3.2.6 资产转账 <code>transfer</code></a></li>
+<li><a href="#327-%E5%AE%9A%E6%97%B6%E6%B1%87%E6%80%BB-startsum">3.2.7 定时汇总 <code>startsum</code></a></li>
+<li><a href="#328-%E9%85%8D%E7%BD%AE%E9%92%B1%E5%8C%85%E4%BF%A1%E6%81%AF-config">3.2.8 配置钱包信息 <code>config</code></a></li>
+</ul>
+</li>
+<li><a href="#33-%E5%95%86%E6%88%B7%E9%85%8D%E7%BD%AE-merchant">3.3 商户配置 <code>merchant</code></a>
+<ul>
+<li><a href="#331-%E8%BF%9E%E6%8E%A5%E5%95%86%E6%88%B7%E6%9C%8D%E5%8A%A1-keychain">3.3.1 连接商户服务 <code>keychain</code></a></li>
+<li><a href="#332-%E8%BF%9E%E6%8E%A5%E5%95%86%E6%88%B7%E6%9C%8D%E5%8A%A1-join">3.3.2 连接商户服务 <code>join</code></a></li>
+<li><a href="#333-%E9%85%8D%E7%BD%AE%E5%95%86%E6%88%B7%E4%BF%A1%E6%81%AF-merchant">3.3.3 配置商户信息 <code>merchant</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-wmd%E5%BA%94%E7%94%A8%E8%AF%B4%E6%98%8E">4. wmd应用说明</a>
+<ul>
+<li><a href="#41-%E7%BC%96%E8%AF%91wmd%E5%B7%A5%E5%85%B7">4.1 编译wmd工具</a></li>
+<li><a href="#42-%E5%91%BD%E4%BB%A4%E7%A4%BA%E4%BE%8B">4.2 命令示例</a>
+<ul>
+<li><a href="#%E8%8A%82%E7%82%B9%E7%9B%B8%E5%85%B3">节点相关</a></li>
+<li><a href="#%E9%92%B1%E5%8C%85%E7%9B%B8%E5%85%B3">钱包相关</a></li>
+<li><a href="#%E5%95%86%E6%88%B7%E7%9B%B8%E5%85%B3">商户相关</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</h2>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">版本</th>
+<th style="text-align:center">时间</th>
+<th style="text-align:center">修订人</th>
+<th style="text-align:left">修订内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1.0.0</td>
+<td style="text-align:center">2018-06-20</td>
+<td style="text-align:center">麦志泉</td>
+<td style="text-align:left">创建文档</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="1-wmd%E4%BB%8B%E7%BB%8D">1. wmd介绍</h2>
+
+<p>wmd全称Wallet Manager Driver。它是一个能够同时管理多个区块链资产的钱包附加工具。<br>
+wmd提供一套规范的区块链资产管理操作命令，使得用户无需关心不同区块链之间的差异，只需要关心如何管理和交换链上的资产。<br>
+wmd基于OpenWallet框架进行开发，集成多个区块链协议及其官方节点程序的API交互。<br>
+wmd的开发宗旨是，用户只需使用wmd管理过一种区块链资产，就等于熟悉了全部区块链资产的管理。</p>
+<hr>
+<h2 class="mume-header" id="2-%E9%9C%80%E6%B1%82%E8%A6%81%E7%82%B9">2. 需求要点</h2>
+
+<blockquote>
+<p>针对每种区块链资产，我们都应该提供以下管理功能。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>描述</th>
+<th>进度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>节点管理相关</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>安装节点</td>
+<td>自动安装节点程序到服务器，生成钱包配置文件并部署运行。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>启动节点</td>
+<td>通过配置文件的启动命令，启动节点服务。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>关闭节点</td>
+<td>通过配置文件的关闭命令，关闭节点服务。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>重启节点</td>
+<td>通过配置文件的启动与关闭命令，重启节点服务。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>查看节点</td>
+<td>查看节点版本，安装目录，是否使用docker镜像等信息。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>节点配置</td>
+<td>查看或初始化某个区块链资产的节点配置。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td><strong>钱包管理相关</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>创建钱包流程</td>
+<td>能够创建自定义名字的钱包，但可能因官方程序受到一些条件限制。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>查看钱包流程</td>
+<td>选择钱包，查看钱包余额。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>备份钱包流程</td>
+<td>选择钱包备份，导出文件到备份文件夹中。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>恢复钱包流程</td>
+<td>按照提示，输入恢复需要资源。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>批量创建地址流程</td>
+<td>选择钱包，创建批量地址，并导出到txt文件。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>资产转账</td>
+<td>选择钱包，转账输入的数量到某个指定地址。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>定时汇总</td>
+<td>选择钱包，加入到定时汇总中。</td>
+<td>已发布</td>
+</tr>
+<tr>
+<td>钱包配置</td>
+<td>查看或初始化某个区块链资产的钱包配置。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td><strong>商户服务相关</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>连接商户接口</td>
+<td>连接商户系统，提供钱包业务数据，具体业务查看接口文档。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>生成通信密钥对</td>
+<td>生成通信密钥对，如果已存在，提示用户是否重新生成。</td>
+<td>开发中</td>
+</tr>
+<tr>
+<td>商户配置</td>
+<td>查看或重新初始化商户管理配置。</td>
+<td>开发中</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="3-%E5%8A%9F%E8%83%BD%E8%AF%A6%E7%BB%86%E8%AE%BE%E8%AE%A1-wmd">3. 功能详细设计 <code>wmd</code></h2>
+
+<p>我们提供命令行工具wmd，以下功能点作为管理资产的【子命令】，附加以下参数变量。</p>
+<h3 class="mume-header" id="%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0">可选参数</h3>
+
+<table>
+<thead>
+<tr>
+<th>参数变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s, -symbol</td>
+<td>币种标识符，其后带值[symbol]，如btc，ltc，eth，ada，btm，sc</td>
+</tr>
+<tr>
+<td>-i, -init</td>
+<td>是否初始化，应用于配置功能时候，是否需要执行初始化流程。</td>
+</tr>
+<tr>
+<td>-p, -path</td>
+<td>文件目录，应用于安装节点时，提供安装的目录。</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">文件目录结构</h3>
+
+<p>使用wmd管理区块链资产时会创建以下文件目录，存储一些钱包相关的数据。目录用途说明如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数变量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>./conf/</td>
+<td>配置文件目录，文件命名 [symbol].ini</td>
+</tr>
+<tr>
+<td>./data/[symbol]/key/</td>
+<td>钱包根私钥文件目录，文件命名 [alias]-[ID].key</td>
+</tr>
+<tr>
+<td>./data/[symbol]/address/</td>
+<td>钱包批量地址导出目录，文件命名 address-yyyyMMddHHmmss.txt</td>
+</tr>
+<tr>
+<td>./data/[symbol]/db/</td>
+<td>钱包外部数据库缓存目录，文件命名 [alias]-[ID].db</td>
+</tr>
+<tr>
+<td>./data/[symbol]/backup/</td>
+<td>钱包备份文件导出目录，以文件夹归档备份，文件夹命名 [alias]-[ID]-yyyyMMddHHmmss</td>
+</tr>
+<tr>
+<td>./data/[symbol]/db/</td>
+<td>钱包外部数据库缓存目录，文件命名 [alias]-[ID].db</td>
+</tr>
+<tr>
+<td>./merchant_data/</td>
+<td>商户配置及相关数据资料</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>命令输入结构: wmd [命令模块] [子命令] [可选参数...]<br>
+如：wmd node install -s btc -p /home/www/btc</p>
+</blockquote>
+<h3 class="mume-header" id="31-%E8%8A%82%E7%82%B9%E7%AE%A1%E7%90%86-node">3.1 节点管理 <code>node</code></h3>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s, -symbol</td>
+<td>资产类型，其后带值[symbol]，如btc，ltc，eth，ada，btm，sc</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="311-%E5%AE%89%E8%A3%85%E8%8A%82%E7%82%B9-install">3.1.1 安装节点 <code>install</code></h4>
+
+<p>有些已经使用dockerfile做到快速安装节点的，我们集成到wmd中。没有dockerfile，我们等候项目推出才支持。<br>
+节点安装流程一般应做到这样。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p, -path</td>
+<td>安装路径，其后带值[dir]，文件夹路径，不存在自动创建。</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>输入命令: wmd node install -s [symbol] -p [dir]</li>
+<li>如果没有自定安装目录，提示输入安装目录。</li>
+<li>本地查找./install/[symbol]/下用于执行安装的shell脚本或dockerfile。</li>
+<li>把节点程序安装用户自定义的目录下。</li>
+<li>修改在./conf/[symbol].ini（如果没有新建），配置节点目录，启动命令，关闭命令，接口API路径等。</li>
+<li>启动节点服务。</li>
+<li>最后提示用户，节点安装成功，及其相关的信息。</li>
+</ol>
+<h4 class="mume-header" id="312-%E5%90%AF%E5%8A%A8%E8%8A%82%E7%82%B9-start">3.1.2 启动节点 <code>start</code></h4>
+
+<ol>
+<li>检查配置文件./conf/[symbol].ini是否有启动节点命令，没有提示需要设置。</li>
+<li>执行启动命令。用户无需关心是使用docker容器启动还是直接启动。</li>
+<li>输出节点信息。</li>
+</ol>
+<h4 class="mume-header" id="313-%E5%85%B3%E9%97%AD%E8%8A%82%E7%82%B9-stop">3.1.3 关闭节点 <code>stop</code></h4>
+
+<ol>
+<li>检查配置文件./conf/[symbol].ini是否有关闭节点命令，没有提示需要设置。</li>
+<li>执行关闭命令。</li>
+</ol>
+<h4 class="mume-header" id="314-%E9%87%8D%E5%90%AF%E8%8A%82%E7%82%B9-restart">3.1.4 重启节点 <code>restart</code></h4>
+
+<ol>
+<li>检查配置文件./conf/[symbol].ini是否有关闭和启动节点命令，没有提示需要设置。</li>
+<li>先执行关闭命令。</li>
+<li>检查是否关闭成功，再执行启动节点命令。</li>
+</ol>
+<h4 class="mume-header" id="315-%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF-info">3.1.5 节点信息 <code>info</code></h4>
+
+<ol>
+<li>检查配置文件./conf/[symbol].ini是否存在，没有提示节点没有安装成功。</li>
+<li>输出节点安装目录，启动命令，关闭命令，接口服务路径，节点客户端版本号，节点相关的网络状态。</li>
+</ol>
+<h4 class="mume-header" id="316-%E9%85%8D%E7%BD%AE%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF-config">3.1.6 配置节点信息 <code>config</code></h4>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i, -init</td>
+<td>是否重新初始化配置。执行初始化配置流程</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>查看节点的配置信息。</li>
+<li>添加-i，执行初始化节点信息流程，与节点相关的配置逐项填写，最后提示二次确认，确认才覆盖保存。</li>
+</ol>
+<h3 class="mume-header" id="32-%E9%92%B1%E5%8C%85%E7%AE%A1%E7%90%86-wallet">3.2 钱包管理 <code>wallet</code></h3>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-s, -symbol</td>
+<td>资产类型，其后带值[symbol]，如btc，ltc，eth，ada，btm，sc</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="321-%E5%88%9B%E5%BB%BA%E9%92%B1%E5%8C%85-new">3.2.1 创建钱包 <code>new</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>执行钱包创建流程，要求用户输入钱包别名，密码等信息。</li>
+<li>大部分钱包都已经支持BIP32，可能钱包同时要创建一个同名的账户。</li>
+<li>创建成功后，一般导出一份私钥存储keystore文件到./data/[symbol]/key/目录下。</li>
+<li>输出创建成功，及钱包keystore的目录。</li>
+</ol>
+<h4 class="mume-header" id="322-%E6%9F%A5%E7%9C%8B%E9%92%B1%E5%8C%85%E5%88%97%E8%A1%A8-list">3.2.2 查看钱包列表 <code>list</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>查询节点的钱包列表，并计算出余额。</li>
+<li>显示钱包列表到终端。</li>
+</ol>
+<h4 class="mume-header" id="323-%E5%A4%87%E4%BB%BD%E9%92%B1%E5%8C%85-backup">3.2.3 备份钱包 <code>backup</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>可能节点提供了备份方法。如果没有，可能通过复制钱包相关的数据文件。</li>
+<li>备份文件导出到./data/backup/[钱包别名-钱包id]-yyyyMMddHHmmss/文件夹下。</li>
+</ol>
+<h4 class="mume-header" id="324-%E6%81%A2%E5%A4%8D%E9%92%B1%E5%8C%85-restore">3.2.4 恢复钱包 <code>restore</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>提示用户输入恢复钱包的文件路径，待恢复钱包的密码等。</li>
+<li>可能节点提供了恢复方法。如果没有，通过覆盖文件到钱包data主目录。</li>
+<li>先备份节点原来的钱包数据到一个临时目录。</li>
+<li>执行恢复钱包步骤，可能涉及重启钱包，覆盖文件等等操作。</li>
+<li>如果恢复成功，检查节点钱包是否使用密码解锁成功。</li>
+<li>如果恢复失败，还原钱包。</li>
+</ol>
+<h4 class="mume-header" id="325-%E6%89%B9%E9%87%8F%E5%88%9B%E5%BB%BA%E5%9C%B0%E5%9D%80-batchaddr">3.2.5 批量创建地址 <code>batchaddr</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>提示用户选择钱包，输入创建地址数量，输入解锁钱包密码等。</li>
+<li>执行批量创建地址步骤，可能会用外部数据库缓存地址。</li>
+<li>批量导出地址到./data/btc/address/address-yyyyMMddHHmmss.txt。</li>
+</ol>
+<h4 class="mume-header" id="326-%E8%B5%84%E4%BA%A7%E8%BD%AC%E8%B4%A6-transfer">3.2.6 资产转账 <code>transfer</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>提示用户选择钱包，输入转账数目，转账地址，钱包密码。</li>
+<li>如果区块链资产是UTXO账户模型的，可能要自己控制input数量。如果input超过最大限制，需要分拆成多个交易单逐一完成转账。</li>
+<li>构建交易单，计算手续费，完成交易签名，广播交易。</li>
+<li>完成整个过程后，输出交易单号。</li>
+</ol>
+<h4 class="mume-header" id="327-%E5%AE%9A%E6%97%B6%E6%B1%87%E6%80%BB-startsum">3.2.7 定时汇总 <code>startsum</code></h4>
+
+<ol>
+<li>加载配置文件./conf/[symbol].ini的钱包相关变量。</li>
+<li>提示用户选择钱包组，输入已选钱包密码，如果没有设置汇总地址，要求输入汇总地址。</li>
+<li>验证密码是否通过，可能借助节点接口的解锁钱包方法，或消息签名方法来验证密码。</li>
+<li>开启定时器，每间隔X秒运行一次汇总程序。</li>
+<li>汇总程序检查钱包余额是否超过汇总阈值，超过执行转账交易，尽量把所有余额转账到汇总地址。</li>
+<li>转账成功输出交易单号。</li>
+</ol>
+<h4 class="mume-header" id="328-%E9%85%8D%E7%BD%AE%E9%92%B1%E5%8C%85%E4%BF%A1%E6%81%AF-config">3.2.8 配置钱包信息 <code>config</code></h4>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i, -init</td>
+<td>是否重新初始化配置。执行初始化配置流程</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>查看钱包的配置信息。</li>
+<li>添加-i，执行初始化钱包信息流程，与钱包相关的配置逐项填写，最后提示二次确认，确认才覆盖保存。</li>
+</ol>
+<h3 class="mume-header" id="33-%E5%95%86%E6%88%B7%E9%85%8D%E7%BD%AE-merchant">3.3 商户配置 <code>merchant</code></h3>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-i, -init</td>
+<td>是否重新初始化客户端密钥对。</td>
+</tr>
+</tbody>
+</table>
+<h4 class="mume-header" id="331-%E8%BF%9E%E6%8E%A5%E5%95%86%E6%88%B7%E6%9C%8D%E5%8A%A1-keychain">3.3.1 连接商户服务 <code>keychain</code></h4>
+
+<ol>
+<li>检查本地是否已创建通信密钥对，没有则创建客户端密钥对，有则显示客户端公钥和服务端公钥。</li>
+<li>并提示-i可以重新创建客户端密钥对，如果重新创建，需要商户平台同时跟换客户端公钥。</li>
+</ol>
+<h4 class="mume-header" id="332-%E8%BF%9E%E6%8E%A5%E5%95%86%E6%88%B7%E6%9C%8D%E5%8A%A1-join">3.3.2 连接商户服务 <code>join</code></h4>
+
+<ol>
+<li>加载配置文件./merchant_data/merchant.ini的商户相关变量。</li>
+<li>通过websocket建立连接，成为商户的资产管理数据源节点。</li>
+<li>相关的日志记录到日志文件中。</li>
+</ol>
+<h4 class="mume-header" id="333-%E9%85%8D%E7%BD%AE%E5%95%86%E6%88%B7%E4%BF%A1%E6%81%AF-merchant">3.3.3 配置商户信息 <code>merchant</code></h4>
+
+<ol>
+<li>查看商户的配置信息。</li>
+<li>添加-i，执行初始化商户信息流程，与商户相关的配置逐项填写，最后提示二次确认，确认才覆盖保存。</li>
+</ol>
+<hr>
+<h2 class="mume-header" id="4-wmd%E5%BA%94%E7%94%A8%E8%AF%B4%E6%98%8E">4. wmd应用说明</h2>
+
+<h3 class="mume-header" id="41-%E7%BC%96%E8%AF%91wmd%E5%B7%A5%E5%85%B7">4.1 编译wmd工具</h3>
+
+<pre data-role="codeBlock" data-info="shell" class="language-shell">
+<span class="token comment"># 进入目录</span>
+$ <span class="token variable">$GOPATH</span>/src/github.com/blocktree/OpenWallet/cmd/wmd
+
+<span class="token comment"># 全部平台版本编译</span>
+$ xgo <span class="token keyword">.</span>
+
+<span class="token comment"># 或自编译某个系统的版本</span>
+$ xgo --targets<span class="token operator">=</span>linux/amd64 <span class="token keyword">.</span>
+
+</pre><h3 class="mume-header" id="42-%E5%91%BD%E4%BB%A4%E7%A4%BA%E4%BE%8B">4.2 命令示例</h3>
+
+<h4 class="mume-header" id="%E8%8A%82%E7%82%B9%E7%9B%B8%E5%85%B3">节点相关</h4>
+
+<pre data-role="codeBlock" data-info="shell" class="language-shell">
+<span class="token comment"># 自动安装[symbol]的官方节点，到[dir]目录。</span>
+$ ./wmd node <span class="token function">install</span> -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span> -p <span class="token punctuation">[</span>dir<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行来自配置文件启动[symbol]节点的命令</span>
+$ ./wmd node start -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行来自配置文件关闭[symbol]节点的命令</span>
+$ ./wmd node stop -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行来自配置文件关闭[symbol]节点和启动[symbol]节点的命令</span>
+$ ./wmd node restart -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 查看与[symbol]节点相关的信息</span>
+$ ./wmd node info -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 查看./conf/[symbol].ini文件中与节点相关的配置信息</span>
+$ ./wmd node config -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行重新初始化节点配置</span>
+$ ./wmd node config -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span> -i
+
+</pre><h4 class="mume-header" id="%E9%92%B1%E5%8C%85%E7%9B%B8%E5%85%B3">钱包相关</h4>
+
+<pre data-role="codeBlock" data-info="shell" class="language-shell">
+<span class="token comment"># 创建钱包，成功后，文件保存在./data/[symbol]/key/</span>
+$ ./wmd wallet new -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 备份钱包私钥和账户相关文件，文件保存在./data/[symbol]/key/backup/</span>
+$ ./wmd wallet backup -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行恢复钱包，提供钱包的备份文件</span>
+$ ./wmd wallet restore -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行批量创建地址命令，文件保存在./conf/[symbol]/address/</span>
+$ ./wmd wallet batchaddr -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 启动批量汇总监听器</span>
+$ ./wmd wallet startsum -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 查询钱包列表</span>
+$ ./wmd wallet list -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 发起转行交易</span>
+$ ./wmd wallet transfer -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 查看./conf/[symbol].ini文件中与钱包相关的配置信息</span>
+$ ./wmd wallet config -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span>
+
+<span class="token comment"># 执行重新初始化钱包配置</span>
+$ ./wmd wallet config -s <span class="token punctuation">[</span>symbol<span class="token punctuation">]</span> -i
+
+</pre><h4 class="mume-header" id="%E5%95%86%E6%88%B7%E7%9B%B8%E5%85%B3">商户相关</h4>
+
+<pre data-role="codeBlock" data-info="shell" class="language-shell">
+<span class="token comment"># 查看通信的客户端和服务端公钥，没有自动创建客户端密钥对</span>
+$ ./wmd merchant keychain
+
+<span class="token comment"># 重新创建客户端密钥对</span>
+$ ./wmd merchant keychain -i
+
+<span class="token comment"># 根据配置文件中的相关商户设置信息，连接到商户服务</span>
+$ ./wmd merchant <span class="token function">join</span>
+
+<span class="token comment"># 查看./merchant_data/merchant.ini文件中与商户相关的配置信息</span>
+$ ./wmd merchant config
+
+<span class="token comment"># 执行重新初始化商户配置</span>
+$ ./wmd merchant config  -i
+
+</pre>
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>

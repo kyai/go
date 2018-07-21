@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>OpenWallet项目规划书</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////Users/maizhiquan/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.4/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="openwallet%E9%A1%B9%E7%9B%AE%E8%A7%84%E5%88%92%E4%B9%A6">OpenWallet项目规划书</h1>
+
+<h2 class="mume-header" id="%E6%A6%82%E8%BF%B0">概述</h2>
+
+<ul>
+<li><a href="#openwallet%E9%A1%B9%E7%9B%AE%E8%A7%84%E5%88%92%E4%B9%A6">OpenWallet项目规划书</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</a></li>
+<li><a href="#1-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E6%A0%87">1. 项目目标</a></li>
+<li><a href="#2-%E9%9C%80%E6%B1%82%E8%A6%81%E7%82%B9">2. 需求要点</a></li>
+<li><a href="#3-openwallet%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84">3. OpenWallet系统架构</a>
+<ul>
+<li><a href="#31-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE">3.1 系统架构图</a></li>
+<li><a href="#32-%E5%85%AC%E6%9C%89%E9%93%BE%E7%BD%91%E7%BB%9C">3.2 公有链网络</a></li>
+<li><a href="#33-openwallet%E8%8A%82%E7%82%B9%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F">3.3 OpenWallet节点——面向协议服务系统</a></li>
+<li><a href="#34-%E7%A7%81%E6%9C%89%E5%8D%8F%E8%AE%AE%E6%8E%88%E6%9D%83">3.4 私有协议授权</a></li>
+<li><a href="#35-%E9%92%B1%E5%8C%85app%E6%88%96%E7%A1%AC%E4%BB%B6%E9%92%B1%E5%8C%85">3.5 钱包App或硬件钱包</a></li>
+<li><a href="#36-openwallet-sdk">3.6 OpenWallet-SDK</a></li>
+</ul>
+</li>
+<li><a href="#4-%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6">4. 系统框架</a>
+<ul>
+<li><a href="#41-openwallet-server%E6%A1%86%E6%9E%B6">4.1 OpenWallet-Server框架</a></li>
+<li><a href="#42-openwallet-sdk%E6%A1%86%E6%9E%B6">4.2 OpenWallet-SDK框架</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90">5. 可行性分析</a>
+<ul>
+<li><a href="#51-%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9">5.1 技术难点</a></li>
+<li><a href="#52-%E5%89%8D%E6%99%AF%E5%88%86%E6%9E%90">5.2 前景分析</a></li>
+</ul>
+</li>
+<li><a href="#6-%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF">6. 开发路线</a>
+<ul>
+<li><a href="#61-%E7%AC%AC1%E9%98%B6%E6%AE%B5openwallet%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%BC%80%E5%8F%91">6.1 【第1阶段】OpenWallet框架设计及开发</a></li>
+<li><a href="#62-%E7%AC%AC2%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81ethereum%E7%B3%BB">6.2 【第2阶段】OpenWallet实现支持Ethereum系</a></li>
+<li><a href="#63-%E7%AC%AC3%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81bitcoin%E7%B3%BB">6.3 【第3阶段】OpenWallet实现支持Bitcoin系</a></li>
+<li><a href="#64-%E7%AC%AC4%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">6.4 【第4阶段】OpenWallet实现用户管理工具。</a></li>
+<li><a href="#65-%E7%AC%AC5%E9%98%B6%E6%AE%B5openwallet%E7%A4%BE%E5%8C%BA%E5%8F%8A%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0">6.5 【第5阶段】OpenWallet社区及开放平台</a></li>
+</ul>
+</li>
+<li><a href="#7-%E5%BC%80%E5%8F%91%E5%9B%A2%E9%98%9F">7. 开发团队</a></li>
+<li><a href="#8-%E7%9B%88%E5%88%A9%E6%A8%A1%E5%BC%8F">8. 盈利模式</a></li>
+</ul>
+</li>
+</ul>
+<h2 class="mume-header" id="%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</h2>
+
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>时间</th>
+<th>修订人</th>
+<th>修订内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td>2018-03-13</td>
+<td>麦志泉</td>
+<td>创建文档</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="1-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E6%A0%87">1. 项目目标</h2>
+
+<p>目前数字资产种类繁多，虽然都提供钱包客户端，但大多体验较差，无法打通各种资产的管理。为了降低维护成本，提高安全性，此项目目标就是开发一个开放性的钱包系统。系统提供多重签名安全保障，实现多种数字资产管理，并能够随新的数字资产业务，而快速增加接入区块链。最终使大众用户获得轻松、愉快，安全的数字钱包使用体验。</p>
+<h2 class="mume-header" id="2-%E9%9C%80%E6%B1%82%E8%A6%81%E7%82%B9">2. 需求要点</h2>
+
+<table>
+<thead>
+<tr>
+<th>序</th>
+<th>需求</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>面向协议服务</td>
+<td>为了方便钱包管理多种数字资产，系统支持水平扩展区块链协议，监听多种协议网络获取，业务需要的数据。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>基于ETH智能合约的业务驱动</td>
+<td>基于ETH的智能合约，完成多种区块链资产的管理业务。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>私有网络集群</td>
+<td>私有网络部署服务节点，保证钱包多重签名时通信安全。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>业务与协议解耦</td>
+<td>在商业化上，每种钱包都有独特的业务，系统架构上要达到业务与区块链协议解耦，以便快速扩展业务。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>提供多种语言SDK</td>
+<td>为了方便第三方应用接入网络，降低开发难度，提供SDK快速集成是最好最安全的途径。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 class="mume-header" id="3-openwallet%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84">3. OpenWallet系统架构</h2>
+
+<h3 class="mume-header" id="31-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE">3.1 系统架构图</h3>
+
+<p><img src="data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI2NzMiIGhlaWdodD0iNjA4Ij48ZGVmcy8+PGc+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxyZWN0IGZpbGw9IiNDMEMwQzAiIHN0cm9rZT0ibm9uZSIgeD0iMjU3IiB5PSIyMzEiIHdpZHRoPSIzMzQiIGhlaWdodD0iMTA3IiBvcGFjaXR5PSIwLjIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxyZWN0IGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgeD0iMjUwIiB5PSIyMjQiIHdpZHRoPSIzMzQiIGhlaWdodD0iMTA3Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMjUwIDIyNCBMIDU4NCAyMjQgTCA1ODQgMzMxIEwgMjUwIDMzMSBMIDI1MCAyMjQgWiBaIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxyZWN0IGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgeD0iMjQwIiB5PSIyMzEiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDI0MCAyMzEgTCAyNjAgMjMxIEwgMjYwIDI0MSBMIDI0MCAyNDEgTCAyNDAgMjMxIFogWiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cmVjdCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHg9IjI0MCIgeT0iMjUxIiB3aWR0aD0iMjAiIGhlaWdodD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSAyNDAgMjUxIEwgMjYwIDI1MSBMIDI2MCAyNjEgTCAyNDAgMjYxIEwgMjQwIDI1MSBaIFoiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDI2MCAyNDkgTCA1ODQgMjQ5IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iMzg5LjUiIHk9IjI0My41Ij7lhazmnInpk77nvZHnu5w8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjI2NSIgeT0iMjY2LjUiPitFdGhlcmV1bTwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iMjY1IiB5PSIyODEuNSI+K0JpdGNvaW48L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjI2NSIgeT0iMjk2LjUiPitMaXRjb2luPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNjUiIHk9IjMxMS41Ij4rQml0c2hhcmVzPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNjUiIHk9IjMyNi41Ij4r5pu05aSaLi4uPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNDMEMwQzAiIHN0cm9rZT0ibm9uZSIgZD0iTSAxNTkgNTY5IEwgMzA1IDU2OSBMIDMwNSA2NzUgTCAxNTkgNjc1IiBvcGFjaXR5PSIwLjIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNDMEMwQzAiIHN0cm9rZT0ibm9uZSIgZD0iTSAxNTkgNTY5IEwgMTY5IDU1OSBMIDMxNSA1NTkgTCAzMDUgNTY5IiBvcGFjaXR5PSIwLjIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNDMEMwQzAiIHN0cm9rZT0ibm9uZSIgZD0iTSAzMTUgNTU5IEwgMzA1IDU2OSBMIDMwNSA2NzUgTCAzMTUgNjY1IiBvcGFjaXR5PSIwLjIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgZD0iTSAxNTIgNTYyIEwgMjk4IDU2MiBMIDI5OCA2NjggTCAxNTIgNjY4Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIGQ9Ik0gMTUyIDU2MiBMIDE2MiA1NTIgTCAzMDggNTUyIEwgMjk4IDU2MiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJub25lIiBkPSJNIDMwOCA1NTIgTCAyOTggNTYyIEwgMjk4IDY2OCBMIDMwOCA2NTgiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSAxNTIgNTYyIEwgMjk4IDU2MiBMIDI5OCA2NjggTCAxNTIgNjY4IEwgMTUyIDU2MiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMTUyIDU2MiBMIDE2MiA1NTIgTCAzMDggNTUyIEwgMjk4IDU2MiBMIDE1MiA1NjIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDMwOCA1NTIgTCAyOTggNTYyIEwgMjk4IDY2OCBMIDMwOCA2NTggTCAzMDggNTUyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSAxNTIgNTg3IEwgMjk5IDU4NyIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjE3OSIgeT0iNTgxLjUiPk9wZW5XYWxsZXToioLngrk8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjE1NyIgeT0iNjA0LjUiPivpg6jnvbLmmbrog73lkIjnuqY8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjE1NyIgeT0iNjE5LjUiPivlpITnkIblkIjnuqbkuqTmmJPnirbmgIE8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjE1NyIgeT0iNjM0LjUiPivop6PnoIHnvJbnoIHljY/orq7mlbDmja7ljIU8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjE1NyIgeT0iNjQ5LjUiPivoh6rlrprkuYnmjojmnYPphY3nva48L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjE1NyIgeT0iNjY0LjUiPivoh6rlrprkuYnmjqXlhaXljLrlnZfpk77ljY/orq48L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDI0NSA1NTEgTCAyNzIgNDQ4IEwgMzY3IDMzMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIzIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBzdHJva2U9Im5vbmUiIGQ9Ik0gMzYwLjYzNTMxMTQyOTEzNDA1IDM1My4wNTkyMTk4MTkyNTk0IEwgMzY3IDMzMiBMIDM0Ny42MDgzNjg0MTA3MDM3IDM0Mi4zOTA2MDI2OTIwOTY2NSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDM2MC42MzUzMTE0MjkxMzQwNSAzNTMuMDU5MjE5ODE5MjU5NCBMIDM2NyAzMzIgTCAzNDcuNjA4MzY4NDEwNzAzNyAzNDIuMzkwNjAyNjkyMDk2NjUgTCAzNjAuNjM1MzExNDI5MTM0MDUgMzUzLjA1OTIxOTgxOTI1OTQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjIxMy41IiB5PSI0NDQuNSI+K+ebkeWQrDwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjQzBDMEMwIiBzdHJva2U9Im5vbmUiIGQ9Ik0gMzUxIDQwMSBMIDQ5NyA0MDEgTCA0OTcgNTA3IEwgMzUxIDUwNyIgb3BhY2l0eT0iMC4yIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjQzBDMEMwIiBzdHJva2U9Im5vbmUiIGQ9Ik0gMzUxIDQwMSBMIDM2MSAzOTEgTCA1MDcgMzkxIEwgNDk3IDQwMSIgb3BhY2l0eT0iMC4yIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjQzBDMEMwIiBzdHJva2U9Im5vbmUiIGQ9Ik0gNTA3IDM5MSBMIDQ5NyA0MDEgTCA0OTcgNTA3IEwgNTA3IDQ5NyIgb3BhY2l0eT0iMC4yIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIGQ9Ik0gMzQ0IDM5NCBMIDQ5MCAzOTQgTCA0OTAgNTAwIEwgMzQ0IDUwMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJub25lIiBkPSJNIDM0NCAzOTQgTCAzNTQgMzg0IEwgNTAwIDM4NCBMIDQ5MCAzOTQiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgZD0iTSA1MDAgMzg0IEwgNDkwIDM5NCBMIDQ5MCA1MDAgTCA1MDAgNDkwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMzQ0IDM5NCBMIDQ5MCAzOTQgTCA0OTAgNTAwIEwgMzQ0IDUwMCBMIDM0NCAzOTQiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDM0NCAzOTQgTCAzNTQgMzg0IEwgNTAwIDM4NCBMIDQ5MCAzOTQgTCAzNDQgMzk0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA1MDAgMzg0IEwgNDkwIDM5NCBMIDQ5MCA1MDAgTCA1MDAgNDkwIEwgNTAwIDM4NCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMzQ0IDQxOSBMIDQ5MSA0MTkiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNzEiIHk9IjQxMy41Ij5PcGVuV2FsbGV06IqC54K5PC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNDkiIHk9IjQzNi41Ij4r6YOo572y5pm66IO95ZCI57qmPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNDkiIHk9IjQ1MS41Ij4r5aSE55CG5ZCI57qm5Lqk5piT54q25oCBPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNDkiIHk9IjQ2Ni41Ij4r6Kej56CB57yW56CB5Y2P6K6u5pWw5o2u5YyFPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNDkiIHk9IjQ4MS41Ij4r6Ieq5a6a5LmJ5o6I5p2D6YWN572uPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNDkiIHk9IjQ5Ni41Ij4r6Ieq5a6a5LmJ5o6l5YWl5Yy65Z2X6ZO+5Y2P6K6uPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA0MTggMzgzIEwgNDE1IDMzMiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIzIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBzdHJva2U9Im5vbmUiIGQ9Ik0gNDI0LjU5ODA1MzAzMDY2MTg0IDM1MS43OTU4OTI5NTg0MDQzNSBMIDQxNSAzMzIgTCA0MDcuNzg5MDM4MjMzNjM4NCAzNTIuNzg0NjU4NTM0Njk5OCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDQyNC41OTgwNTMwMzA2NjE4NCAzNTEuNzk1ODkyOTU4NDA0MzUgTCA0MTUgMzMyIEwgNDA3Ljc4OTAzODIzMzYzODQgMzUyLjc4NDY1ODUzNDY5OTggTCA0MjQuNTk4MDUzMDMwNjYxODQgMzUxLjc5NTg5Mjk1ODQwNDM1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzNjguNSIgeT0iMzc3LjUiPivnm5HlkKw8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0iI0MwQzBDMCIgc3Ryb2tlPSJub25lIiBkPSJNIDU2NyA1NjkgTCA3MTMgNTY5IEwgNzEzIDY3NSBMIDU2NyA2NzUiIG9wYWNpdHk9IjAuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0iI0MwQzBDMCIgc3Ryb2tlPSJub25lIiBkPSJNIDU2NyA1NjkgTCA1NzcgNTU5IEwgNzIzIDU1OSBMIDcxMyA1NjkiIG9wYWNpdHk9IjAuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0iI0MwQzBDMCIgc3Ryb2tlPSJub25lIiBkPSJNIDcyMyA1NTkgTCA3MTMgNTY5IEwgNzEzIDY3NSBMIDcyMyA2NjUiIG9wYWNpdHk9IjAuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJub25lIiBkPSJNIDU2MCA1NjIgTCA3MDYgNTYyIEwgNzA2IDY2OCBMIDU2MCA2NjgiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgZD0iTSA1NjAgNTYyIEwgNTcwIDU1MiBMIDcxNiA1NTIgTCA3MDYgNTYyIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIGQ9Ik0gNzE2IDU1MiBMIDcwNiA1NjIgTCA3MDYgNjY4IEwgNzE2IDY1OCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDU2MCA1NjIgTCA3MDYgNTYyIEwgNzA2IDY2OCBMIDU2MCA2NjggTCA1NjAgNTYyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA1NjAgNTYyIEwgNTcwIDU1MiBMIDcxNiA1NTIgTCA3MDYgNTYyIEwgNTYwIDU2MiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gNzE2IDU1MiBMIDcwNiA1NjIgTCA3MDYgNjY4IEwgNzE2IDY1OCBMIDcxNiA1NTIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDU2MCA1ODcgTCA3MDcgNTg3IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTg3IiB5PSI1ODEuNSI+T3BlbldhbGxldOiKgueCuTwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTY1IiB5PSI2MDQuNSI+K+mDqOe9suaZuuiDveWQiOe6pjwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTY1IiB5PSI2MTkuNSI+K+WkhOeQhuWQiOe6puS6pOaYk+eKtuaAgTwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTY1IiB5PSI2MzQuNSI+K+ino+eggee8lueggeWNj+iuruaVsOaNruWMhTwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTY1IiB5PSI2NDkuNSI+K+iHquWumuS5ieaOiOadg+mFjee9rjwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTY1IiB5PSI2NjQuNSI+K+iHquWumuS5ieaOpeWFpeWMuuWdl+mTvuWNj+iurjwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gNjA3IDU1MSBMIDU0NCA0MzIgTCA0NTkgMzMyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IjMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0ibm9uZSIgZD0iTSA0NzguNTc4NDc0ODA1MjAwMiAzNDIuMDM0MTA4MDQ3MTYzIEwgNDU5IDMzMiBMIDQ2NS43NDg4ODY0NTY3Mzk2IDM1Mi45MzkyNTgxNDMzNTQ1Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gNDc4LjU3ODQ3NDgwNTIwMDIgMzQyLjAzNDEwODA0NzE2MyBMIDQ1OSAzMzIgTCA0NjUuNzQ4ODg2NDU2NzM5NiAzNTIuOTM5MjU4MTQzMzU0NSBMIDQ3OC41Nzg0NzQ4MDUyMDAyIDM0Mi4wMzQxMDgwNDcxNjMiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjU2MS41IiB5PSI0MjguNSI+K+ebkeWQrDwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMjk3IDU1MSBMIDM1MyA1MDIiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIgc3Ryb2tlLWRhc2hhcnJheT0iMyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDQ5OSA1MDIgTCA1NjIgNTUxIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IjMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA1NTkgNjEwIEwgMzEwIDYxMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIzIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSIjQzBDMEMwIiBzdHJva2U9Im5vbmUiIGQ9Ik0gNDAzLjkgNTI3IEwgNDMxLjM0IDUyNyBMIDQ0My4wOTk5OTk5OTk5OTk5NyA1MzguNzYgTCA0NDMuMDk5OTk5OTk5OTk5OTcgNTc2IEwgNDAzLjkgNTc2IiBvcGFjaXR5PSIwLjIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgZD0iTSAzOTYuOSA1MjAgTCA0MjQuMzQwMDAwMDAwMDAwMDMgNTIwIEwgNDM2LjEgNTMxLjc2IEwgNDM2LjEgNTY5IEwgMzk2LjkgNTY5Ii8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMzk2LjkgNTIwIEwgNDI0LjM0MDAwMDAwMDAwMDAzIDUyMCBMIDQzNi4xIDUzMS43NiBMIDQzNi4xIDU2OSBMIDM5Ni45IDU2OSBMIDM5Ni45IDUyMCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gNDI0LjM0MDAwMDAwMDAwMDAzIDUyMCBMIDQyNC4zNDAwMDAwMDAwMDAwMyA1MzEuNzYgTCA0MzYuMSA1MzEuNzYgTCA0MjQuMzQwMDAwMDAwMDAwMDMgNTIwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iMzY0LjUiIHk9IjU4OC41Ij7np4HmnInljY/orq7mjojmnYPkupLogZQ8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHJlY3QgZmlsbD0iI0MwQzBDMCIgc3Ryb2tlPSJub25lIiB4PSI4MSIgeT0iNzI3IiB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjkyIiBvcGFjaXR5PSIwLjIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxyZWN0IGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgeD0iNzQiIHk9IjcyMCIgd2lkdGg9IjE0NCIgaGVpZ2h0PSI5MiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDc0IDcyMCBMIDIxOCA3MjAgTCAyMTggODEyIEwgNzQgODEyIEwgNzQgNzIwIFogWiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cmVjdCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHg9IjY0IiB5PSI3MjciIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDY0IDcyNyBMIDg0IDcyNyBMIDg0IDczNyBMIDY0IDczNyBMIDY0IDcyNyBaIFoiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHJlY3QgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJub25lIiB4PSI2NCIgeT0iNzQ3IiB3aWR0aD0iMjAiIGhlaWdodD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA2NCA3NDcgTCA4NCA3NDcgTCA4NCA3NTcgTCA2NCA3NTcgTCA2NCA3NDcgWiBaIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA4NCA3NDUgTCAyMTggNzQ1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iMTA3IiB5PSI3MzkuNSI+QXBw5oiW5aSW5o6l56Gs5Lu2PC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSI4OSIgeT0iNzYyLjUiPivmnKzlnLDliJvlu7rpkqXljJnlr7k8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9Ijg5IiB5PSI3NzcuNSI+K+acrOWcsOetvuWQjeaOiOadgzwvdGV4dD48L2c+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iODkiIHk9Ijc5Mi41Ij4r56a757q/5aSH5Lu9PC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSI4OSIgeT0iODA3LjUiPivoh6rlrprkuYnotKbmiLfkvZPns7vmqKHlnos8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDE2OCA3MTkgTCAxOTYgNjcwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IjMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSAxOTQuNjEyNzg2MjA4NTg0NjggNjgwLjkxMjE3ODQyMTIzNjggTCAxOTYgNjcwIEwgMTg3LjMwMzAxNjM2MTk2MDYzIDY3Ni43MzUxNjcwODAzMDg4IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIxMDAuNSIgeT0iNjk0LjUiPivlu7rnq4vov57mjqU8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHJlY3QgZmlsbD0iI0MwQzBDMCIgc3Ryb2tlPSJub25lIiB4PSIyNjUiIHk9IjcyNyIgd2lkdGg9IjE0NCIgaGVpZ2h0PSI5MiIgb3BhY2l0eT0iMC4yIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cmVjdCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHg9IjI1OCIgeT0iNzIwIiB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjkyIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMjU4IDcyMCBMIDQwMiA3MjAgTCA0MDIgODEyIEwgMjU4IDgxMiBMIDI1OCA3MjAgWiBaIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxyZWN0IGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgeD0iMjQ4IiB5PSI3MjciIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDI0OCA3MjcgTCAyNjggNzI3IEwgMjY4IDczNyBMIDI0OCA3MzcgTCAyNDggNzI3IFogWiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cmVjdCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHg9IjI0OCIgeT0iNzQ3IiB3aWR0aD0iMjAiIGhlaWdodD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSAyNDggNzQ3IEwgMjY4IDc0NyBMIDI2OCA3NTcgTCAyNDggNzU3IEwgMjQ4IDc0NyBaIFoiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDI2OCA3NDUgTCA0MDIgNzQ1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iMjkxIiB5PSI3MzkuNSI+QXBw5oiW5aSW5o6l56Gs5Lu2PC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNzMiIHk9Ijc2Mi41Ij4r5pys5Zyw5Yib5bu66ZKl5YyZ5a+5PC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNzMiIHk9Ijc3Ny41Ij4r5pys5Zyw562+5ZCN5o6I5p2DPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNzMiIHk9Ijc5Mi41Ij4r56a757q/5aSH5Lu9PC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIyNzMiIHk9IjgwNy41Ij4r6Ieq5a6a5LmJ6LSm5oi35L2T57O75qih5Z6LPC90ZXh0PjwvZz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSAyOTYgNzE5IEwgMjY3IDY3MCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIzIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gMjc1Ljc5ODY3NTQ2OTgyNjI2IDY3Ni42MDE3NjU2NzExNDI2IEwgMjY3IDY3MCBMIDI2OC41NTM0NDk4MTYzMDQzIDY4MC44ODk3NTYzNjQwNDM0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgdGV4dC1kZWNvcmF0aW9uPSJub25lIiB4PSIzMDEuNSIgeT0iNjk5LjUiPivlu7rnq4vov57mjqU8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHJlY3QgZmlsbD0iI0MwQzBDMCIgc3Ryb2tlPSJub25lIiB4PSI1MjEiIHk9IjcyNyIgd2lkdGg9IjEzMSIgaGVpZ2h0PSI2MiIgb3BhY2l0eT0iMC4yIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cmVjdCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHg9IjUxNCIgeT0iNzIwIiB3aWR0aD0iMTMxIiBoZWlnaHQ9IjYyIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAwMDAiIGQ9Ik0gNTE0IDcyMCBMIDY0NSA3MjAgTCA2NDUgNzgyIEwgNTE0IDc4MiBMIDUxNCA3MjAgWiBaIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxyZWN0IGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0ibm9uZSIgeD0iNTA0IiB5PSI3MjciIHdpZHRoPSIyMCIgaGVpZ2h0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDUwNCA3MjcgTCA1MjQgNzI3IEwgNTI0IDczNyBMIDUwNCA3MzcgTCA1MDQgNzI3IFogWiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48cmVjdCBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHg9IjUwNCIgeT0iNzQ3IiB3aWR0aD0iMjAiIGhlaWdodD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA1MDQgNzQ3IEwgNTI0IDc0NyBMIDUyNCA3NTcgTCA1MDQgNzU3IEwgNTA0IDc0NyBaIFoiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDUyNCA3NDUgTCA2NDUgNzQ1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxnPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIvPjx0ZXh0IGZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEzcHgiIGZvbnQtc3R5bGU9Im5vcm1hbCIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTUzLjUiIHk9IjczOS41Ij7nrKzkuInmlrlBcHA8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjUyOSIgeT0iNzYyLjUiPivoh6rkuLvlrp7njrDmjojmnYPljY/orq48L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PGc+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIi8+PHRleHQgZmlsbD0iIzAwMDAwMCIgc3Ryb2tlPSJub25lIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTNweCIgZm9udC1zdHlsZT0ibm9ybWFsIiBmb250LXdlaWdodD0ibm9ybWFsIiB0ZXh0LWRlY29yYXRpb249Im5vbmUiIHg9IjUyOSIgeT0iNzc3LjUiPivlv6vmjbfpm4bmiJBTREs8L3RleHQ+PC9nPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQsLTIxNCkgc2NhbGUoMSwxKSI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBkPSJNIDU4OSA3MTkgTCA2MTEgNjcwIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IjMiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0LC0yMTQpIHNjYWxlKDEsMSkiPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgZD0iTSA2MTAuNjc3NjgwNzExMDkyNiA2ODAuOTk1Mjc2NzI1NzU4MSBMIDYxMSA2NzAgTCA2MDIuOTk3MjUxMTExMzAwMiA2NzcuNTQ2OTIwNTc4OTEyNiIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NCwtMjE0KSBzY2FsZSgxLDEpIj48Zz48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiLz48dGV4dCBmaWxsPSIjMDAwMDAwIiBzdHJva2U9Im5vbmUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxM3B4IiBmb250LXN0eWxlPSJub3JtYWwiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIHRleHQtZGVjb3JhdGlvbj0ibm9uZSIgeD0iNTI2LjUiIHk9IjcwMC41Ij4r5bu656uL6L+e5o6lPC90ZXh0PjwvZz48L2c+PC9nPjwvc3ZnPg==" alt="&#x7CFB;&#x7EDF;&#x67B6;&#x6784;"></p>
+<h3 class="mume-header" id="32-%E5%85%AC%E6%9C%89%E9%93%BE%E7%BD%91%E7%BB%9C">3.2 公有链网络</h3>
+
+<p>每种区块链协议都有一个以上的通信网络，例如Bitcoin，有mainnet主网，testnet测试网，及一些分叉网络。要入接该网络，系统需要监听网络端口，实现解析数据包。要开发一个能够处理多种数字资产的钱包，我们首先要开发一个支持多种区块链协议的网络服务，我称此类系统平台为【面向协议服务】。</p>
+<h3 class="mume-header" id="33-openwallet%E8%8A%82%E7%82%B9%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F">3.3 OpenWallet节点——面向协议服务系统</h3>
+
+<p>OpenWallet节点是整个钱包系统的核心，它具有以下作用：</p>
+<ol>
+<li>配置监听多种区块链网络。</li>
+<li>解析区块链网络数据包，并按需写入数据库。</li>
+<li>部署ETH多重签名智能合约，基于ETH智能合约实现发起其它币种的交易请求。(例如通过ETH智能合约，驱动Bitcoin发起多重签名交易请求)</li>
+<li>分布式部署节点，避免中心服务器被攻击至崩溃，导致无法提供服务。</li>
+<li>节点与节点之间通过私有协议授权通信，保证多重签名传输过程安全。</li>
+<li>提供应用授权接入协议，App或内嵌应用硬件可以安全接入。</li>
+</ol>
+<h3 class="mume-header" id="34-%E7%A7%81%E6%9C%89%E5%8D%8F%E8%AE%AE%E6%8E%88%E6%9D%83">3.4 私有协议授权</h3>
+
+<p>因为OpenWallet服务是分布式部署的，这样可以做到去中心化，避免中心服务器被攻击至崩溃，导致无法提供服务。对等节点之间需要一份私有协议，互相授权连接，保证网络通信安全，也能根据钱包业务处理能力而水平扩展。</p>
+<p>另一方面如果部署的节点足够多，并且加入一些共识机制，便形成一条侧链。在多重签名授权情况下，链下交易可以做到快速确认和可申诉撤销，进而避免主链交易出错无法回退的问题。</p>
+<h3 class="mume-header" id="35-%E9%92%B1%E5%8C%85app%E6%88%96%E7%A1%AC%E4%BB%B6%E9%92%B1%E5%8C%85">3.5 钱包App或硬件钱包</h3>
+
+<p>钱包App是整个系统的业务执行终端。它具有一下作用：</p>
+<ol>
+<li>提供钱包账户体系管理。现行有多种钱包模型，如：单账户模型，HD模型，多重签名模型，冷热模型。App应用平台，负责这个体系的创建，管理和备份。</li>
+<li>提供钱包交易管理。钱包App可以不作为全节点运行，但至少需要获取账户关联的交易数据和实时余额，才能发起交易。 并且任何交易的签署最终放在终端上完成，保证私钥不传输在网络中。</li>
+<li>不同的钱包App还可能会有其它业务，例如：购物支付，理财借贷。</li>
+</ol>
+<h3 class="mume-header" id="36-openwallet-sdk">3.6 OpenWallet-SDK</h3>
+
+<p>制作SDK组件的目的，是为了钱包App能快速集成服务。解耦业务与协议，让App开发者专注于开发应用业务，不需要关心区块链协议。</p>
+<hr>
+<h2 class="mume-header" id="4-%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6">4. 系统框架</h2>
+
+<blockquote>
+<p>为何说明开发的是系统框架（Framework）而不是系统应用（Application）。我们一般参与公司项目一般都是应用程序开发，这类项目非常依赖业务需求，不需要通用。而框架是一种非常通用，用于解决某个领域上的程序，现在大部分的应用都建立在各个框架的组合上。因此，我们钱包应用是一种面对多种数字资产管理的业务。OpenWallet既是提供这类业务的解决方案，提供这类框架，而不必要考虑客户具体面对的业务。<br>
+所以开发者开发过程中需要转变思维，程序开发不要固化在业务层，要考虑扩展性，面向接口开发。</p>
+</blockquote>
+<h3 class="mume-header" id="41-openwallet-server%E6%A1%86%E6%9E%B6">4.1 OpenWallet-Server框架</h3>
+
+<p>系统框架有如下组件需要开发：</p>
+<ul>
+<li><strong>加密货币工具库</strong>。用于底层验证不同数字资产交易的合法性。</li>
+<li><strong>虚拟机插件管理</strong>。负责对多种数字资产的虚拟器进行管理。</li>
+<li><strong>区块链协议驱动器抽象接口</strong>。负责抽象接口层，统一调用规范，满足调用不同的区块链终端命令。</li>
+<li><strong>区块链协议驱动器</strong>。这是一个非常好用的组件，就像流行的Java Web框架连接各种数据库一样。开发者无需关心区块链协议，像连接数据库一样使用就是。</li>
+<li><strong>区块链网络监听器</strong>。负责启动已安装的区块链终端，监听区块链网络。</li>
+<li><strong>钱包管理服务</strong>。负责管理多重签名账户，处理交易业务。</li>
+<li><strong>钱包管理服务API</strong>。负责授权App应用接入，推送交易状态数据。</li>
+<li><strong>钱包服务命令行工具</strong>。PC终端可对服务进行命令操作，修改配置文件。</li>
+<li><strong>钱包服务浏览器</strong>。负责提供图形界面给管理者查看钱包账户，交易数据，修改服务配置等功能。</li>
+</ul>
+<blockquote>
+<p>开发以上组件后，管理者可以在OpenWallet上动态添加数字资产，使用业务应用获得该数字资产区块链的支持。</p>
+</blockquote>
+<h3 class="mume-header" id="42-openwallet-sdk%E6%A1%86%E6%9E%B6">4.2 OpenWallet-SDK框架</h3>
+
+<ul>
+<li><strong>网络通信组件</strong>。负责OpenWallet节点短/长连接工作，获得线上服务功能。</li>
+<li><strong>授权配置组件</strong>。负责处理连接节点的授权过程，确保连接上节点是安全授权的App。</li>
+<li><strong>账户体系组件</strong>。默认给开发者提供一套高可用的账户体系模型，但开发者也可以不采用。</li>
+<li><strong>加密库组件</strong>。负责处理多种数字资产的底层加密过程。</li>
+<li><strong>本地缓存组件</strong>。使用本地缓存，可减少网络数据重复加载，提高App运行效率。</li>
+<li><strong>调试分析组件</strong>。提供调试分析工具，可让开发者在开发环境查看程序执行的各个状态，减少漏洞。</li>
+<li><strong>示例测试</strong>。提供多个示例场景，方便集成测试。</li>
+</ul>
+<h2 class="mume-header" id="5-%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90">5. 可行性分析</h2>
+
+<h3 class="mume-header" id="51-%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9">5.1 技术难点</h3>
+
+<ol>
+<li>虽然我们以对Bitcoin的运作非常熟悉，也有提供多重签名的钱包App案例。但实现Ethereum合约驱动Bitcoin实现执行脚仍没有案例。为实现此案例，我们要对Bitcoin脚本指令深入研究，为Bitcoin开发一款采用Ethereum合约语言的虚拟机。这样就可以使用Ethereum合约来驱动执行Bitcoin合约。以后其它基于Bitcoin原理的数字资产都可兼容。</li>
+<li>多种虚拟机插件管理程序目前还没有一个案例，如能实现一个像Visual Studio Code，可自由安装插件的管理程序，未来区块链的应用就非常广范了。</li>
+<li>区块链协议驱动器要开发成功的前提是，开发者的非常熟悉主流的区块链协议，并能够抽象出一套通用的接口规范。</li>
+<li>数字资产的加密库组件能够开发一套跨平台通用库有一定难度，不但要保证各个平台的编译通过，也考虑不同平台架构对加密算法的影响。核心部分我们采用经过历史考验的开源库，再自己封装一层通用接口。</li>
+</ol>
+<h3 class="mume-header" id="52-%E5%89%8D%E6%99%AF%E5%88%86%E6%9E%90">5.2 前景分析</h3>
+
+<ul>
+<li>区块链目前仍处于开发探索阶段，还没有真正盈利的项目落地。各种概念的炒作会令开发者分心，失去持续研究的初衷。所以我们要坚持【直线法则】，当开发越到困难，应该正面分析问题，找出答案解决问题，而不是绕一个大圈来避免问题发生。我预测【直线法则】会意想不到的给项目带来创新，并且给团队成员带来巨大能力提升。</li>
+<li>现在的商业项目模式都是面向业务服务，而本项目则是面向协议服务。项目实现区块链协议，能接入业务应用系统，实现价值的传递，这会事未来的一个趋势。</li>
+<li>区块链开发人才和资源都非常稀缺。在资本扎堆入场区块链，通过参与开发此项目，会给团队带来更大的价值提升，项目运营也会容易成功。</li>
+</ul>
+<h2 class="mume-header" id="6-%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF">6. 开发路线</h2>
+
+<h3 class="mume-header" id="61-%E7%AC%AC1%E9%98%B6%E6%AE%B5openwallet%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%BC%80%E5%8F%91">6.1 【第1阶段】OpenWallet框架设计及开发</h3>
+
+<p>第1阶段我们应该研究好框架的设计，这样给我们未来集成各个种数字资产带更快的效率。此阶段需要实现：</p>
+<ol>
+<li>设计OpenWallet的区块链协议驱动器抽象接口。</li>
+<li>设计OpenWallet的数字资产加密库接口。</li>
+<li>设计OpenWallet面向App端的授权接口。</li>
+<li>设计OpenWallet对等节点的通信接口。</li>
+<li>实现OpenWallet网络通信模块。</li>
+<li>设计SDK组件框架。</li>
+<li>实现SDK与OpenWallet通信接口。</li>
+</ol>
+<h3 class="mume-header" id="62-%E7%AC%AC2%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81ethereum%E7%B3%BB">6.2 【第2阶段】OpenWallet实现支持Ethereum系</h3>
+
+<p>Ethereum已经成为目前区块链领域最大的开发社区。我们首先实现它，将会马上得广泛应用和开发支持。此阶段需要实现：</p>
+<ol>
+<li>实现OpenWallet对Ethereum驱动支持。</li>
+<li>实现Ethereum及Token的多重签名钱包合约。</li>
+<li>实现SDK支持Ethereum协议，解析Ethereum数据状态。</li>
+<li>实现Ethereum系的数字资产多重签名钱包应用。</li>
+<li>实现OpenWallet可配置区块链的管理功能。</li>
+</ol>
+<h3 class="mume-header" id="63-%E7%AC%AC3%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81bitcoin%E7%B3%BB">6.3 【第3阶段】OpenWallet实现支持Bitcoin系</h3>
+
+<p>很多有主链的山寨币都fork于Bitcoin，所以实现Bitcoin可以实现兼容很多流行的山寨币。此阶段需要实现：</p>
+<ol>
+<li>实现OpenWallet对Bitcoin驱动支持。</li>
+<li>实现支持Ehereum合约语言的Bitcoin虚拟机。</li>
+<li>实现Ethereum合约驱动Bitcoin虚拟机运行合约。</li>
+<li>实现SDK支持Bitcoin协议，解析Bitcoin数据状态。</li>
+<li>实现Bitcoin系的数字资产多重签名钱包应用。</li>
+</ol>
+<h3 class="mume-header" id="64-%E7%AC%AC4%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">6.4 【第4阶段】OpenWallet实现用户管理工具。</h3>
+
+<p>此阶段，我们要做到为运维在OpenWallet容易地管理服务，我们主要开发系统维护功能。</p>
+<ol>
+<li>实现OpenWallet命令行工具。</li>
+<li>实现OpenWallet图形浏览器。</li>
+<li>实现OpenWallet分布式部署配置功能。</li>
+</ol>
+<h3 class="mume-header" id="65-%E7%AC%AC5%E9%98%B6%E6%AE%B5openwallet%E7%A4%BE%E5%8C%BA%E5%8F%8A%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0">6.5 【第5阶段】OpenWallet社区及开放平台</h3>
+
+<p>为了更好地给未来更多的数字资产连接OpenWallet。我们提供社区及开放平台。区块链开发者自主开发驱动引擎，应用开发者自主接入服务。</p>
+<ol>
+<li>实现OpenWallet开放平台，编写平台接入资料。</li>
+<li>建立管理团队维护开放平台。</li>
+</ol>
+<h2 class="mume-header" id="7-%E5%BC%80%E5%8F%91%E5%9B%A2%E9%98%9F">7. 开发团队</h2>
+
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>技能需求</th>
+<th>人数</th>
+<th>负责领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>密码算法工程师</td>
+<td>精通密码学，擅长分析和设计算法。</td>
+<td>2+</td>
+<td>专攻数字资产底层加密库的组件及智能合约开发</td>
+</tr>
+<tr>
+<td>服务端开发工程师</td>
+<td>熟练使用C/C++，Go，Java，NodeJs其中一种编写服务端。</td>
+<td>3+</td>
+<td>专攻P2P网络开发，实现区块链协议。</td>
+</tr>
+<tr>
+<td>SDK开发工程师</td>
+<td>熟悉iOS，Android，Mac，Win，Linux等平台的应用开发</td>
+<td>3+</td>
+<td>为各个语言开发领域提供SDK组件，Swift，Java，Go，NodeJs等领域。</td>
+</tr>
+<tr>
+<td>App开发工程师</td>
+<td>熟悉iOS，Android，Mac，Win，Linux等平台的应用开发。</td>
+<td>2+（或外包）</td>
+<td>开发多重签名钱包App。</td>
+</tr>
+<tr>
+<td>产品工程师</td>
+<td>熟悉软件产品开发流程，产品设计。</td>
+<td>1</td>
+<td>专攻去中心化产品设计，设计钱包业务流程 。</td>
+</tr>
+</tbody>
+</table>
+<h2 class="mume-header" id="8-%E7%9B%88%E5%88%A9%E6%A8%A1%E5%BC%8F">8. 盈利模式</h2>
+
+<p>待完善。</p>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#openwallet%E9%A1%B9%E7%9B%AE%E8%A7%84%E5%88%92%E4%B9%A6">OpenWallet项目规划书</a>
+<ul>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#%E4%BF%AE%E8%AE%A2%E4%BF%A1%E6%81%AF">修订信息</a></li>
+<li><a href="#1-%E9%A1%B9%E7%9B%AE%E7%9B%AE%E6%A0%87">1. 项目目标</a></li>
+<li><a href="#2-%E9%9C%80%E6%B1%82%E8%A6%81%E7%82%B9">2. 需求要点</a></li>
+<li><a href="#3-openwallet%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84">3. OpenWallet系统架构</a>
+<ul>
+<li><a href="#31-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E5%9B%BE">3.1 系统架构图</a></li>
+<li><a href="#32-%E5%85%AC%E6%9C%89%E9%93%BE%E7%BD%91%E7%BB%9C">3.2 公有链网络</a></li>
+<li><a href="#33-openwallet%E8%8A%82%E7%82%B9%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E6%9C%8D%E5%8A%A1%E7%B3%BB%E7%BB%9F">3.3 OpenWallet节点——面向协议服务系统</a></li>
+<li><a href="#34-%E7%A7%81%E6%9C%89%E5%8D%8F%E8%AE%AE%E6%8E%88%E6%9D%83">3.4 私有协议授权</a></li>
+<li><a href="#35-%E9%92%B1%E5%8C%85app%E6%88%96%E7%A1%AC%E4%BB%B6%E9%92%B1%E5%8C%85">3.5 钱包App或硬件钱包</a></li>
+<li><a href="#36-openwallet-sdk">3.6 OpenWallet-SDK</a></li>
+</ul>
+</li>
+<li><a href="#4-%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6">4. 系统框架</a>
+<ul>
+<li><a href="#41-openwallet-server%E6%A1%86%E6%9E%B6">4.1 OpenWallet-Server框架</a></li>
+<li><a href="#42-openwallet-sdk%E6%A1%86%E6%9E%B6">4.2 OpenWallet-SDK框架</a></li>
+</ul>
+</li>
+<li><a href="#5-%E5%8F%AF%E8%A1%8C%E6%80%A7%E5%88%86%E6%9E%90">5. 可行性分析</a>
+<ul>
+<li><a href="#51-%E6%8A%80%E6%9C%AF%E9%9A%BE%E7%82%B9">5.1 技术难点</a></li>
+<li><a href="#52-%E5%89%8D%E6%99%AF%E5%88%86%E6%9E%90">5.2 前景分析</a></li>
+</ul>
+</li>
+<li><a href="#6-%E5%BC%80%E5%8F%91%E8%B7%AF%E7%BA%BF">6. 开发路线</a>
+<ul>
+<li><a href="#61-%E7%AC%AC1%E9%98%B6%E6%AE%B5openwallet%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%BC%80%E5%8F%91">6.1 【第1阶段】OpenWallet框架设计及开发</a></li>
+<li><a href="#62-%E7%AC%AC2%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81ethereum%E7%B3%BB">6.2 【第2阶段】OpenWallet实现支持Ethereum系</a></li>
+<li><a href="#63-%E7%AC%AC3%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E6%94%AF%E6%8C%81bitcoin%E7%B3%BB">6.3 【第3阶段】OpenWallet实现支持Bitcoin系</a></li>
+<li><a href="#64-%E7%AC%AC4%E9%98%B6%E6%AE%B5openwallet%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7">6.4 【第4阶段】OpenWallet实现用户管理工具。</a></li>
+<li><a href="#65-%E7%AC%AC5%E9%98%B6%E6%AE%B5openwallet%E7%A4%BE%E5%8C%BA%E5%8F%8A%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0">6.5 【第5阶段】OpenWallet社区及开放平台</a></li>
+</ul>
+</li>
+<li><a href="#7-%E5%BC%80%E5%8F%91%E5%9B%A2%E9%98%9F">7. 开发团队</a></li>
+<li><a href="#8-%E7%9B%88%E5%88%A9%E6%A8%A1%E5%BC%8F">8. 盈利模式</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>

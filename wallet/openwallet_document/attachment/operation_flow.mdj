@@ -1,0 +1,1766 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "钱包体系流程",
+	"ownedElements": [
+		{
+			"_type": "UMLCollaboration",
+			"_id": "AAAAAAFkoM//bJCMJa8=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "创建钱包流程",
+			"ownedElements": [
+				{
+					"_type": "UMLInteraction",
+					"_id": "AAAAAAFkoM//bJCNaAU=",
+					"_parent": {
+						"$ref": "AAAAAAFkoM//bJCMJa8="
+					},
+					"name": "创建钱包流程",
+					"ownedElements": [
+						{
+							"_type": "UMLSequenceDiagram",
+							"_id": "AAAAAAFkoM//bJCOHY0=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "创建钱包流程",
+							"ownedViews": [
+								{
+									"_type": "UMLFrameView",
+									"_id": "AAAAAAFkoM//bZCPtTM=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFkoM//bZCQS8M=",
+											"_parent": {
+												"$ref": "AAAAAAFkoM//bZCPtTM="
+											},
+											"font": "Arial;13;0",
+											"left": 70.97900390625,
+											"top": 5,
+											"width": 79,
+											"height": 13,
+											"text": "创建钱包流程"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAFkoM//bZCR6co=",
+											"_parent": {
+												"$ref": "AAAAAAFkoM//bZCPtTM="
+											},
+											"font": "Arial;13;1",
+											"left": 5,
+											"top": 5,
+											"width": 60.97900390625,
+											"height": 13,
+											"text": "interaction"
+										}
+									],
+									"font": "Arial;13;0",
+									"width": 916,
+									"height": 785,
+									"nameLabel": {
+										"$ref": "AAAAAAFkoM//bZCQS8M="
+									},
+									"frameTypeLabel": {
+										"$ref": "AAAAAAFkoM//bZCR6co="
+									}
+								},
+								{
+									"_type": "UMLSeqLifelineView",
+									"_id": "AAAAAAFkoNFVr5ChKFE=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoNFVr5CgokU="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAFkoNFVr5CisbM=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNFVr5ChKFE="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNFVr5CgokU="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFVsJCj/5Q=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFVr5CisbM="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -112,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFVsJCkQHk=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFVr5CisbM="
+													},
+													"font": "Arial;13;1",
+													"left": 53,
+													"top": 47,
+													"width": 62.736328125,
+													"height": 13,
+													"text": "业务应用"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFVsJClc+g=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFVr5CisbM="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -112,
+													"width": 116.27001953125,
+													"height": 13,
+													"text": "(from 创建钱包流程)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFVsJCmgWk=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFVr5CisbM="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": -112,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 48,
+											"top": 40,
+											"width": 72.736328125,
+											"height": 40,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAFkoNFVsJCj/5Q="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAFkoNFVsJCkQHk="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAFkoNFVsJClc+g="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAFkoNFVsJCmgWk="
+											}
+										},
+										{
+											"_type": "UMLLinePartView",
+											"_id": "AAAAAAFkoNFVsJCnBSU=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNFVr5ChKFE="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNFVr5CgokU="
+											},
+											"font": "Arial;13;0",
+											"left": 84,
+											"top": 80,
+											"width": 1,
+											"height": 649
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 48,
+									"top": 40,
+									"width": 72.736328125,
+									"height": 689,
+									"nameCompartment": {
+										"$ref": "AAAAAAFkoNFVr5CisbM="
+									},
+									"linePart": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									}
+								},
+								{
+									"_type": "UMLSeqLifelineView",
+									"_id": "AAAAAAFkoNFeSJDAQUs=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoNFeSJC/oI8="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAFkoNFeSJDBjhk=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNFeSJDAQUs="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNFeSJC/oI8="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFeSJDCTXw=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFeSJDBjhk="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": 144,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFeSJDDTcY=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFeSJDBjhk="
+													},
+													"font": "Arial;13;1",
+													"left": 445,
+													"top": 47,
+													"width": 77.17724609375,
+													"height": 13,
+													"text": "SDK"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFeSJDEEPM=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFeSJDBjhk="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": 144,
+													"width": 116.27001953125,
+													"height": 13,
+													"text": "(from 创建钱包流程)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNFeSJDFHWM=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNFeSJDBjhk="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": 144,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 440,
+											"top": 40,
+											"width": 87.17724609375,
+											"height": 40,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAFkoNFeSJDCTXw="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAFkoNFeSJDDTcY="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAFkoNFeSJDEEPM="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAFkoNFeSJDFHWM="
+											}
+										},
+										{
+											"_type": "UMLLinePartView",
+											"_id": "AAAAAAFkoNFeSJDGcwU=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNFeSJDAQUs="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNFeSJC/oI8="
+											},
+											"font": "Arial;13;0",
+											"left": 484,
+											"top": 80,
+											"width": 1,
+											"height": 649
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 440,
+									"top": 40,
+									"width": 87.17724609375,
+									"height": 689,
+									"nameCompartment": {
+										"$ref": "AAAAAAFkoNFeSJDBjhk="
+									},
+									"linePart": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									}
+								},
+								{
+									"_type": "UMLSeqLifelineView",
+									"_id": "AAAAAAFkoNIXVpDkbpc=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoNIXVpDjjcg="
+									},
+									"subViews": [
+										{
+											"_type": "UMLNameCompartmentView",
+											"_id": "AAAAAAFkoNIXVpDlBdw=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNIXVpDkbpc="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNIXVpDjjcg="
+											},
+											"subViews": [
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNIXVpDmtQI=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNIXVpDlBdw="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": 128,
+													"height": 13
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNIXVpDnGPY=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNIXVpDlBdw="
+													},
+													"font": "Arial;13;1",
+													"left": 765,
+													"top": 47,
+													"width": 129.17724609375,
+													"height": 13,
+													"text": "openwallet钱包服务"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNIXVpDo4js=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNIXVpDlBdw="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": 128,
+													"width": 116.27001953125,
+													"height": 13,
+													"text": "(from 创建钱包流程)"
+												},
+												{
+													"_type": "LabelView",
+													"_id": "AAAAAAFkoNIXVpDpVBQ=",
+													"_parent": {
+														"$ref": "AAAAAAFkoNIXVpDlBdw="
+													},
+													"visible": false,
+													"font": "Arial;13;0",
+													"left": 128,
+													"height": 13,
+													"horizontalAlignment": 1
+												}
+											],
+											"font": "Arial;13;0",
+											"left": 760,
+											"top": 40,
+											"width": 139.17724609375,
+											"height": 40,
+											"stereotypeLabel": {
+												"$ref": "AAAAAAFkoNIXVpDmtQI="
+											},
+											"nameLabel": {
+												"$ref": "AAAAAAFkoNIXVpDnGPY="
+											},
+											"namespaceLabel": {
+												"$ref": "AAAAAAFkoNIXVpDo4js="
+											},
+											"propertyLabel": {
+												"$ref": "AAAAAAFkoNIXVpDpVBQ="
+											}
+										},
+										{
+											"_type": "UMLLinePartView",
+											"_id": "AAAAAAFkoNIXVpDqUTA=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNIXVpDkbpc="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNIXVpDjjcg="
+											},
+											"font": "Arial;13;0",
+											"left": 830,
+											"top": 80,
+											"width": 1,
+											"height": 649
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 760,
+									"top": 40,
+									"width": 139.17724609375,
+									"height": 689,
+									"nameCompartment": {
+										"$ref": "AAAAAAFkoNIXVpDlBdw="
+									},
+									"linePart": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoNStDZEE8Z0=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoNStDZEDPBE="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoNStDZEFNaY=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNStDZEDPBE="
+											},
+											"font": "Arial;13;0",
+											"left": 89,
+											"top": 119,
+											"width": 382.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"edgePosition": 1,
+											"text": "1 : 创建钱包，传入：钱包密码，钱包别名，（可选种子，助记词）"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoNStDpEGtIs=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNStDZEDPBE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 280,
+											"top": 104,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoNStDpEHofM=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNStDZEDPBE="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 280,
+											"top": 139,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoNStDpEIrs4=",
+											"_parent": {
+												"$ref": "AAAAAAFkoNStDZEE8Z0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoNStDZEDPBE="
+											},
+											"font": "Arial;13;0",
+											"left": 477,
+											"top": 135,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									},
+									"points": "84:135;477:135",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoNStDZEFNaY="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoNStDpEGtIs="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoNStDpEHofM="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoNStDpEIrs4="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoN/ozJGeINk=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoN/ozJGd44s="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN/ozJGf8w0=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN/ozJGd44s="
+											},
+											"font": "Arial;13;0",
+											"left": 595,
+											"top": 136,
+											"width": 122.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"edgePosition": 1,
+											"text": "2 : 调用创建钱包接口"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN/ozJGgSOA=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN/ozJGd44s="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 656,
+											"top": 121,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN/ozJGhUK4=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN/ozJGd44s="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 656,
+											"top": 156,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoN/ozJGi3dM=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN/ozJGeINk="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN/ozJGd44s="
+											},
+											"font": "Arial;13;0",
+											"left": 823,
+											"top": 152,
+											"width": 14,
+											"height": 53
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"points": "490:152;823:152",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoN/ozJGf8w0="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoN/ozJGgSOA="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoN/ozJGhUK4="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoN/ozJGi3dM="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoN+3x5GHmc0=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoN+3x5GGrsw="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN+3x5GI3eU=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN+3x5GGrsw="
+											},
+											"font": "Arial;13;0",
+											"left": 695,
+											"top": 218,
+											"width": 200.0654296875,
+											"height": 13,
+											"alpha": -1.586180730941796,
+											"distance": 65.00769185258002,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"edgePosition": 1,
+											"text": "3 : 创建钱包密钥，钱包资料文件夹"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN+3x5GJSJ4=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN+3x5GGrsw="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 884,
+											"top": 219,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN+3x5GK0/0=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN+3x5GGrsw="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 850,
+											"top": 220,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoN+3x5GL6ts=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN+3x5GHmc0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN+3x5GGrsw="
+											},
+											"font": "Arial;13;0",
+											"left": 823,
+											"top": 236,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"points": "830:216;860:216;860:236;836:236",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoN+3x5GI3eU="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoN+3x5GJSJ4="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoN+3x5GK0/0="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoN+3x5GL6ts="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoN4CZJFFnE0=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoN4CY5FE21U="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN4CZJFG8bM=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN4CY5FE21U="
+											},
+											"font": "Arial;13;0",
+											"left": 408,
+											"top": 276,
+											"width": 96.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"edgePosition": 1,
+											"text": "4 : 返回钱包信息"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN4CZJFHOKk=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN4CY5FE21U="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 456,
+											"top": 291,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN4CZJFIq+A=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN4CY5FE21U="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 457,
+											"top": 256,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoN4CZJFJGrc=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN4CZJFFnE0="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN4CY5FE21U="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 84,
+											"top": 272,
+											"width": 14,
+											"height": 25
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"points": "830:272;84:272",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoN4CZJFG8bM="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoN4CZJFHOKk="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoN4CZJFIq+A="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoN4CZJFJGrc="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoN63ZpFfNH8=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoN63ZpFeebg="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN63ZpFg8xQ=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN63ZpFeebg="
+											},
+											"font": "Arial;13;0",
+											"left": 172,
+											"top": 327,
+											"width": 213.0654296875,
+											"height": 13,
+											"alpha": -4.514994382073455,
+											"distance": 10.198039027185569,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"edgePosition": 1,
+											"text": "5 : 绑定钱包观察地址数据源代理方法"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN63ZpFhEoU=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN63ZpFeebg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 280,
+											"top": 313,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoN63ZpFi7fs=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN63ZpFeebg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 280,
+											"top": 348,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoN63ZpFjoPg=",
+											"_parent": {
+												"$ref": "AAAAAAFkoN63ZpFfNH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoN63ZpFeebg="
+											},
+											"font": "Arial;13;0",
+											"left": 477,
+											"top": 344,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									},
+									"points": "84:344;477:344",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoN63ZpFg8xQ="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoN63ZpFhEoU="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoN63ZpFi7fs="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoN63ZpFjoPg="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoQaEVZHj5uQ=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoQaEVZHi1Dg="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQaEVZHkl4A=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQaEVZHi1Dg="
+											},
+											"font": "Arial;13;0",
+											"left": 174,
+											"top": 403,
+											"width": 213.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"edgePosition": 1,
+											"text": "6 : 订阅钱包变动信息：交易，余额等"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQaEVpHlzAU=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQaEVZHi1Dg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 280,
+											"top": 388,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQaEVpHmxf0=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQaEVZHi1Dg="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 280,
+											"top": 423,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoQaEVpHngo0=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQaEVZHj5uQ="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQaEVZHi1Dg="
+											},
+											"font": "Arial;13;0",
+											"left": 477,
+											"top": 419,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									},
+									"points": "84:419;477:419",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoQaEVZHkl4A="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoQaEVpHlzAU="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoQaEVpHmxf0="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoQaEVpHngo0="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoQytMpH72p8=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoQytMpH66lA="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQytMpH8pxM=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQytMpH66lA="
+											},
+											"font": "Arial;13;0",
+											"left": 605,
+											"top": 432,
+											"width": 96.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"edgePosition": 1,
+											"text": "7 : 登记钱包订阅"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQytMpH9iVs=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQytMpH66lA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 653,
+											"top": 417,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQytMpH+jvQ=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQytMpH66lA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 653,
+											"top": 452,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoQytM5H/IGw=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQytMpH72p8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQytMpH66lA="
+											},
+											"font": "Arial;13;0",
+											"left": 823,
+											"top": 448,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"points": "484:448;823:448",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoQytMpH8pxM="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoQytMpH9iVs="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoQytMpH+jvQ="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoQytM5H/IGw="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoQz1IZIR7PI=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoQz1IJIQR84="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQz1IZISOFc=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQz1IJIQR84="
+											},
+											"font": "Arial;13;0",
+											"left": 579,
+											"top": 500,
+											"width": 161.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"edgePosition": 1,
+											"text": "8 : 定时获取订阅的观察地址"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQz1IZITGGQ=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQz1IJIQR84="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 659,
+											"top": 515,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoQz1IZIUplA=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQz1IJIQR84="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 660,
+											"top": 480,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoQz1IZIV6o0=",
+											"_parent": {
+												"$ref": "AAAAAAFkoQz1IZIR7PI="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoQz1IJIQR84="
+											},
+											"font": "Arial;13;0",
+											"left": 477,
+											"top": 496,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"points": "830:496;490:496",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoQz1IZISOFc="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoQz1IZITGGQ="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoQz1IZIUplA="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoQz1IZIV6o0="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoTd6vZJJFH8=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoTd6vZJIboA="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoTd6vZJKBKU=",
+											"_parent": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoTd6vZJIboA="
+											},
+											"font": "Arial;13;0",
+											"left": 392,
+											"top": 596,
+											"width": 129.29541015625,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"edgePosition": 1,
+											"text": "10 : 推送钱包订阅信息"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoTd6vZJLSWw=",
+											"_parent": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoTd6vZJIboA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 456,
+											"top": 611,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoTd6vpJMjV0=",
+											"_parent": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoTd6vZJIboA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 457,
+											"top": 576,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoTd6vpJNM0g=",
+											"_parent": {
+												"$ref": "AAAAAAFkoTd6vZJJFH8="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoTd6vZJIboA="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 84,
+											"top": 592,
+											"width": 14,
+											"height": 25
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNIXVpDqUTA="
+									},
+									"points": "830:592;84:592",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoTd6vZJKBKU="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoTd6vZJLSWw="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoTd6vpJMjV0="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoTd6vpJNM0g="
+									}
+								},
+								{
+									"_type": "UMLSeqMessageView",
+									"_id": "AAAAAAFkoiIUdpJjfZc=",
+									"_parent": {
+										"$ref": "AAAAAAFkoM//bJCOHY0="
+									},
+									"model": {
+										"$ref": "AAAAAAFkoiIUdpJixOU="
+									},
+									"subViews": [
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoiIUdpJk6nA=",
+											"_parent": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoiIUdpJixOU="
+											},
+											"font": "Arial;13;0",
+											"left": 238,
+											"top": 529,
+											"width": 96.0654296875,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"edgePosition": 1,
+											"text": "9 : 获取订阅地址"
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoiIUdpJlDig=",
+											"_parent": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoiIUdpJixOU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 286,
+											"top": 544,
+											"height": 13,
+											"alpha": 1.5707963267948966,
+											"distance": 25,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "EdgeLabelView",
+											"_id": "AAAAAAFkoiIUdpJmqFY=",
+											"_parent": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoiIUdpJixOU="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": 287,
+											"top": 509,
+											"height": 13,
+											"alpha": -1.5707963267948966,
+											"distance": 10,
+											"hostEdge": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"edgePosition": 1
+										},
+										{
+											"_type": "UMLActivationView",
+											"_id": "AAAAAAFkoiIUdpJnbFo=",
+											"_parent": {
+												"$ref": "AAAAAAFkoiIUdpJjfZc="
+											},
+											"model": {
+												"$ref": "AAAAAAFkoiIUdpJixOU="
+											},
+											"font": "Arial;13;0",
+											"left": 77,
+											"top": 525,
+											"width": 14,
+											"height": 29
+										}
+									],
+									"font": "Arial;13;0",
+									"head": {
+										"$ref": "AAAAAAFkoNFVsJCnBSU="
+									},
+									"tail": {
+										"$ref": "AAAAAAFkoNFeSJDGcwU="
+									},
+									"points": "484:525;90:525",
+									"nameLabel": {
+										"$ref": "AAAAAAFkoiIUdpJk6nA="
+									},
+									"stereotypeLabel": {
+										"$ref": "AAAAAAFkoiIUdpJlDig="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAFkoiIUdpJmqFY="
+									},
+									"activation": {
+										"$ref": "AAAAAAFkoiIUdpJnbFo="
+									}
+								}
+							]
+						}
+					],
+					"messages": [
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoNStDZEDPBE=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "创建钱包，传入：钱包密码，钱包别名，（可选种子，助记词）",
+							"source": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoN/ozJGd44s=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "调用创建钱包接口",
+							"source": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoN+3x5GGrsw=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "创建钱包密钥，钱包资料文件夹",
+							"source": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoN4CY5FE21U=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "返回钱包信息",
+							"source": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							},
+							"messageSort": "reply"
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoN63ZpFeebg=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "绑定钱包观察地址数据源代理方法",
+							"source": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoQaEVZHi1Dg=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "订阅钱包变动信息：交易，余额等",
+							"source": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoQytMpH66lA=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "登记钱包订阅",
+							"source": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoQz1IJIQR84=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "定时获取订阅的观察地址",
+							"source": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoiIUdpJixOU=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "获取订阅地址",
+							"source": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							}
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoTd6vZJIboA=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "推送钱包订阅信息",
+							"source": {
+								"$ref": "AAAAAAFkoNIXVpDjjcg="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							},
+							"messageSort": "reply"
+						},
+						{
+							"_type": "UMLMessage",
+							"_id": "AAAAAAFkoTVfd5IoGvo=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "获取",
+							"source": {
+								"$ref": "AAAAAAFkoNFeSJC/oI8="
+							},
+							"target": {
+								"$ref": "AAAAAAFkoNFVr5CgokU="
+							}
+						}
+					],
+					"participants": [
+						{
+							"_type": "UMLLifeline",
+							"_id": "AAAAAAFkoNFVr5CgokU=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "业务应用",
+							"represent": {
+								"$ref": "AAAAAAFkoNFVrpCf1RM="
+							},
+							"isMultiInstance": false
+						},
+						{
+							"_type": "UMLLifeline",
+							"_id": "AAAAAAFkoNFeSJC/oI8=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "SDK",
+							"represent": {
+								"$ref": "AAAAAAFkoNFeSJC+3Dk="
+							},
+							"isMultiInstance": false
+						},
+						{
+							"_type": "UMLLifeline",
+							"_id": "AAAAAAFkoNIXVpDjjcg=",
+							"_parent": {
+								"$ref": "AAAAAAFkoM//bJCNaAU="
+							},
+							"name": "openwallet钱包服务",
+							"represent": {
+								"$ref": "AAAAAAFkoNIXVZDiAys="
+							},
+							"isMultiInstance": false
+						}
+					]
+				}
+			],
+			"attributes": [
+				{
+					"_type": "UMLAttribute",
+					"_id": "AAAAAAFkoNFVrpCf1RM=",
+					"_parent": {
+						"$ref": "AAAAAAFkoM//bJCMJa8="
+					},
+					"name": "Role1"
+				},
+				{
+					"_type": "UMLAttribute",
+					"_id": "AAAAAAFkoNFeSJC+3Dk=",
+					"_parent": {
+						"$ref": "AAAAAAFkoM//bJCMJa8="
+					},
+					"name": "Role2"
+				},
+				{
+					"_type": "UMLAttribute",
+					"_id": "AAAAAAFkoNIXVZDiAys=",
+					"_parent": {
+						"$ref": "AAAAAAFkoM//bJCMJa8="
+					},
+					"name": "Role3"
+				}
+			]
+		}
+	]
+}
